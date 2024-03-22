@@ -124,7 +124,7 @@ class Toefl_Exam(models.Model):
     Speaking = models.FloatField()
     Overall = models.FloatField()
     def __str__(self):
-        return self.Overall
+        return (self.Overall)
 
 class PTE_Exam(models.Model):
     Listening = models.FloatField()

@@ -9,19 +9,19 @@ from django_countries.fields import CountryField
 # Create your models here.
 class enquiry(models.Model):
     # Personal Info
-    student_First_Name = models.CharField(max_length=100)
-    student_Last_Name = models.CharField(max_length=100)
-    student_passport = models.CharField(max_length=100)
+    student_First_Name = models.CharField(max_length=100,null=False, blank=False,)
+    student_Last_Name = models.CharField(max_length=100,null=False, blank=False)
+    student_passport = models.CharField(max_length=100,null=False, blank=False)
 
     # Contact Info
-    student_phone = models.CharField(max_length=10)
-    alternate_phone = models.CharField(max_length=10)
-    student_email = models.EmailField()
-    student_address = models.TextField()
-    student_country = CountryField(blank_label="(select country)")
-    student_state = models.CharField(max_length=100)
-    student_city = models.CharField(max_length=100)
-    student_zip = models.CharField(max_length=10)
+    student_phone = models.CharField(max_length=10,null=False, blank=False)
+    alternate_phone = models.CharField(max_length=10,null=True, blank=True)
+    student_email = models.EmailField(max_length=100,null=False, blank=False)
+    student_address = models.TextField(max_length=200,null=False, blank=False)
+    student_country = CountryField(blank_label="(select country)",null=False, blank=False)
+    student_state = models.CharField(max_length=100,null=False, blank=False)
+    student_city = models.CharField(max_length=100,null=False, blank=False)
+    student_zip = models.CharField(max_length=10,null=False, blank=False)
 
     # Education Info
     current_education = models.ForeignKey(current_education, on_delete=models.CASCADE)
