@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-from Master.models import course_levels, intake, documents_required, course_requirements, current_education, country, enquiry_status, Course, university, intake_Year
+from Master.models import course_levels, intake, current_education, enquiry_status, Course, university
 from django.contrib.auth import get_user_model
 from django_countries.fields import CountryField
 
@@ -31,8 +31,8 @@ class enquiry(models.Model):
     university_interested = models.ForeignKey(university, on_delete=models.CASCADE)
     course_interested = models.ForeignKey(Course, on_delete=models.CASCADE)
     level_applying_for = models.ForeignKey(course_levels, on_delete=models.CASCADE)
-    intake_interested_month = models.ForeignKey(intake, on_delete=models.CASCADE)
-    intake_interested_year = models.ForeignKey(intake_Year, on_delete=models.CASCADE)
+    intake_interested = models.ForeignKey(intake, on_delete=models.CASCADE)
+
 
     # For Counsellor
     assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default="")
@@ -40,4 +40,6 @@ class enquiry(models.Model):
     notes = models.TextField()
 
     def __str__(self):
-        return self.student_First_Name
+        return (f"{self.student_First_Name} - {self.country_interested} - {self.university_interested} - {self.course_interested} - {self.level_applying_for} "
+                f"- {self.intake_interested}")
+

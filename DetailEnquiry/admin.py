@@ -25,11 +25,23 @@ class DetailEnquiryAdmin(admin.ModelAdmin):
         ('Family Details', {
             'fields': ('Father_Occupation', 'Father_Annual_Income'),
         }),
-        ('Document Uploads', {
+        ('Education Documents', {
             'fields': (
             'Twelveth_Document', 'Tenth_Document', 'Graduation_Marksheet', 'Graduation_Certificate', 'UG_Marksheet',
-            'UG_Certificate', 'Work_Experience_Document', 'Passport_Document', 'Offer_Letter', 'Ielts_Result',
-            'Toefl_Result', 'PTE_Result', 'Duolingo_Result', 'Gre_Result', 'Gmat_Result'),
+            'UG_Certificate', ),
+        }),
+        ('Exam Documents', {
+            'fields': ('Ielts_Result',
+            'Toefl_Result', 'PTE_Result', 'Duolingo_Result', 'Gre_Result', 'Gmat_Result',),
+        }),
+        ('Other Documents', {
+            'fields': ('Work_Experience_Document', 'Passport_Document',),
+        }),
+        ('Offer Letter', {
+            'fields': ('Offer_Letter',),
+        }),
+        ('Refusal Letter', {
+            'fields': ('Refusal',),
         }),
     )
 

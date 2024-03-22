@@ -1,9 +1,11 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import country, course_levels, intake, current_education, documents_required, course_requirements, \
-    enquiry_status, application_status, Course, university, intake_Year, assessment_status, Edu_Level,Work_Experience, \
-    ielts_Exam, PTE_Exam, Toefl_Exam, Duolingo_Exam, Gre_Exam, Gmat_Exam, Rejection_Reason
+from .models import country, course_levels, intake, current_education, documents_required, \
+    enquiry_status, application_status, Course, university, assessment_status, Edu_Level,Work_Experience, \
+     Rejection_Reason
+from Master.models import twelfth_std_percentage_requirement, bachelor_requirement, masters_requirement, tenth_std_percentage_requirement, \
+    ielts_Exam, PTE_Exam, Toefl_Exam, Duolingo_Exam, Gre_Exam, Gmat_Exam
 
 
 from import_export.admin import ImportExportMixin
@@ -14,21 +16,67 @@ from import_export.admin import ImportExportMixin
 
 
 class CourseListAdmin(ImportExportMixin, admin.ModelAdmin):
-    list_display = ('university', 'course_name', 'course_levels', 'intake', 'documents_required', 'course_requirements', 'Active')
+    list_display = ('id','university', 'course_name', 'course_levels','display_intakes','tenth_std_percentage_requirement','twelfth_std_percentage_requirement','bachelor_requirement','masters_requirement',
+                          'Toefl_Exam','ielts_Exam','PTE_Exam','Duolingo_Exam','Gre_Exam', 'Gmat_Exam','Remark','Active')
 
-    list_filter = ('university', 'course_name', 'course_levels', 'intake', 'documents_required', 'course_requirements', 'Active')
+    list_filter = ('university', 'course_name', 'course_levels', 'intake', 'documents_required','tenth_std_percentage_requirement','twelfth_std_percentage_requirement','bachelor_requirement','masters_requirement',
+                          'Toefl_Exam','ielts_Exam','PTE_Exam','Duolingo_Exam','Gre_Exam', 'Gmat_Exam','Active')
 
-    list_display_links = None
+    fieldsets = ( ('Course Details', {
+                   'fields': ('university', 'course_name', 'course_levels', 'intake', 'documents_required', 'Active')
+                }),
+                ('Course Requirements', {
+                    'fields': ('tenth_std_percentage_requirement','twelfth_std_percentage_requirement','bachelor_requirement','masters_requirement',
+                          'Toefl_Exam','ielts_Exam','PTE_Exam','Duolingo_Exam','Gre_Exam', 'Gmat_Exam',
+                            )
+                }),
+                ('Notes', {
+                    'fields': ('Remark',)
+                }),
+
+    )
+
+    list_display_links = ('id','university',)
     list_per_page = 20
+
+    def display_intakes(self, obj):
+        """
+        Returns a comma-separated list of intake months and years from the ManyToManyField.
+        """
+        # Concatenates intake_month and intake_year for each intake, separated by a space, and then joins all into a comma-separated list
+        return ", ".join([f"{intake.intake_Name} {intake.intake_month} {intake.intake_year}" for intake in obj.intake.all()])
+    display_intakes.short_description = 'Intakes'  # Sets the column name in the admin list view
+
+
+
 
 
 
 class UniversityListAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = (
-        'univ_name', 'country', 'univ_desc', 'univ_logo', 'univ_phone', 'univ_email',
-        'univ_website', 'assigned_users')
+        'univ_name', 'country', 'univ_desc',
+        'univ_website','application_form','ielts_Exam','PTE_Exam','Toefl_Exam','Duolingo_Exam','Gre_Exam', 'Gmat_Exam','Remark','assigned_users')
 
-    list_filter = ('univ_name', 'country', 'univ_phone', 'univ_email', 'assigned_users')
+    list_filter = ('univ_name', 'country', 'univ_phone', 'univ_email', 'assigned_users','ielts_Exam','PTE_Exam','Toefl_Exam','Duolingo_Exam','Gre_Exam', 'Gmat_Exam')
+    fieldsets = (
+        ('University Details', {
+            'fields': ('univ_name', 'country', 'univ_desc', 'univ_logo',
+                       'application_form' ,'newsletter','Active')
+        }),
+        ('Contact Information', {
+            'fields': ('univ_phone', 'univ_email', 'univ_website', 'assigned_users')
+        }),
+        ('Requirements & Status', {
+            'fields': ('tenth_std_percentage_requirement','twelfth_std_percentage_requirement','bachelor_requirement','masters_requirement',
+                       'Toefl_Exam','ielts_Exam','PTE_Exam','Duolingo_Exam','Gre_Exam', 'Gmat_Exam',
+                       )
+        }),
+         ('Notes', {
+            'fields': ('Remark',)
+        }),
+
+
+    )
 
     list_display_links = ('univ_name'),
     list_per_page = 10
@@ -42,10 +90,8 @@ class UniversityListAdmin(ImportExportMixin, admin.ModelAdmin):
 admin.site.register(country)
 admin.site.register(course_levels)
 admin.site.register(intake)
-admin.site.register(intake_Year)
 admin.site.register(current_education)
 admin.site.register(documents_required)
-admin.site.register(course_requirements)
 admin.site.register(enquiry_status)
 admin.site.register(application_status)
 admin.site.register(Course, CourseListAdmin)
@@ -60,6 +106,11 @@ admin.site.register(Duolingo_Exam)
 admin.site.register(Gre_Exam)
 admin.site.register(Gmat_Exam)
 admin.site.register(Rejection_Reason)
+admin.site.register(tenth_std_percentage_requirement)
+admin.site.register(twelfth_std_percentage_requirement)
+admin.site.register(bachelor_requirement)
+admin.site.register(masters_requirement)
+
 
 
 
