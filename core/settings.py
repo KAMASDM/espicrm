@@ -134,17 +134,17 @@ JAZZMIN_SETTINGS = {
     # Links to put along the top menu
     "topmenu_links": [
 
-        # Url that gets reversed (Permissions can be added)
+        
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
 
-        # external url that opens in a new window (Permissions can be added)
-        {"name": "Support", "url": "https://espiconsultants.com/", "new_window": True},
+        {"name": "Enquiry", "url": "/admin/Enquiry/enquiry/", "permissions": ["auth.view_user"]},
 
-        # model admin to link to (Permissions checked against model)
+        {"name": "Assessment", "url": "/admin/Assessment/assessment/", "permissions": ["auth.view_user"]},
+
         {"model": "auth.User"},
 
-        # App with dropdown menu to all its models pages (Permissions checked against models)
-       # {"app": "books"},
+        {"name": "Support", "url": "https://espiconsultants.com/", "new_window": True},
+        
     ],
 
     #############
