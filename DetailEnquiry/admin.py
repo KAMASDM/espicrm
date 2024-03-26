@@ -11,34 +11,34 @@ class DetailEnquiryAdmin(admin.ModelAdmin):
 
     # Enable filters
     list_filter = (
-    'level', 'Work_Experience', 'Toefl_Exam', 'ielts_Exam', 'PTE_Exam', 'Duolingo_Exam', 'Gre_Exam', 'Gmat_Exam','Refusal')
+    'level','Gre_Exam', 'Gmat_Exam','Refusal')
 
     # Fieldsets to organize the form view
     fieldsets = (
-        ('Basic Information', {
-            'fields': ('Current_Enquiry', 'level', 'Work_Experience','Refusal')
-        }),
-        ('Examination Details', {
-            'fields': ('Toefl_Exam', 'ielts_Exam', 'PTE_Exam', 'Duolingo_Exam', 'Gre_Exam', 'Gmat_Exam'),
-        }),
-        ('Family Details', {
-            'fields': ('Father_Occupation', 'Father_Annual_Income'),
-        }),
-        ('Education Documents', {
-            'fields': (
-            'Twelveth_Document', 'Tenth_Document', 'Graduation_Marksheet', 'Graduation_Certificate', 'UG_Marksheet',
-            'UG_Certificate', ),
-        }),
-        ('Exam Documents', {
-            'fields': ('Ielts_Result',
-            'Toefl_Result', 'PTE_Result', 'Duolingo_Result', 'Gre_Result', 'Gmat_Result',),
-        }),
-        ('Other Documents', {
-            'fields': ('Work_Experience_Document', 'Passport_Document',),
-        }),
-        ('Offer Letter', {
-            'fields': ('Offer_Letter',),
-        }),
+        # ('Basic Information', {
+        #     'fields': ('Current_Enquiry', 'level', 'Work_Experience','Refusal')
+        # }),
+        # ('Examination Details', {
+        #     'fields': ('Toefl_Exam', 'ielts_Exam', 'PTE_Exam', 'Duolingo_Exam', 'Gre_Exam', 'Gmat_Exam'),
+        # }),
+        # ('Family Details', {
+        #     'fields': ('Father_Occupation', 'Father_Annual_Income'),
+        # }),
+        # ('Education Documents', {
+        #     'fields': (
+        #     'Twelveth_Document', 'Tenth_Document', 'Graduation_Marksheet', 'Graduation_Certificate', 'UG_Marksheet',
+        #     'UG_Certificate', ),
+        # }),
+        # ('Exam Documents', {
+        #     'fields': ('Ielts_Result',
+        #     'Toefl_Result', 'PTE_Result', 'Duolingo_Result', 'Gre_Result', 'Gmat_Result',),
+        # }),
+        # ('Other Documents', {
+        #     'fields': ('Work_Experience_Document', 'Passport_Document',),
+        # }),
+        # ('Offer Letter', {
+        #     'fields': ('Offer_Letter',),
+        # }),
         ('Refusal Letter', {
             'fields': ('Refusal',),
         }),

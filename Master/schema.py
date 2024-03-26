@@ -20,7 +20,7 @@
 import graphene
 from graphene_django.types import DjangoObjectType
 from .models import (
-    country, course_levels, current_education, intake, intake_Year,
+    country, course_levels, current_education, intake, 
     documents_required, course_requirements, enquiry_status, assessment_status,
     application_status, university, Course, Edu_Level, Work_Experience,
     ielts_Exam, Toefl_Exam, PTE_Exam, Duolingo_Exam, Gre_Exam, Gmat_Exam,
@@ -48,9 +48,9 @@ class IntakeType(DjangoObjectType):
         model = intake
 
 
-class IntakeYearType(DjangoObjectType):
-    class Meta:
-        model = intake_Year
+# class IntakeYearType(DjangoObjectType):
+#     class Meta:
+#         model = intake_Year
 
 
 class DocumentsRequiredType(DjangoObjectType):
@@ -138,7 +138,7 @@ class Query(graphene.ObjectType):
     all_course_levels = graphene.List(CourseLevelsType)
     all_current_educations = graphene.List(CurrentEducationType)
     all_intakes = graphene.List(IntakeType)
-    all_intake_years = graphene.List(IntakeYearType)
+    # all_intake_years = graphene.List(IntakeYearType)
     all_documents_required = graphene.List(DocumentsRequiredType)
     all_course_requirements = graphene.List(CourseRequirementsType)
     all_enquiry_statuses = graphene.List(EnquiryStatusType)

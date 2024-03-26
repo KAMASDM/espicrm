@@ -4,25 +4,26 @@ from .models import enquiry
 
 # Register your models here.
 class EnquiryList(admin.ModelAdmin):
-    fieldsets = (
-        ("Student Info", {"fields": ("student_First_Name", "student_Last_Name", "student_passport")}),
-        ("Contact Info", {"fields": (
-            "student_phone", "alternate_phone", "student_email", "student_address", "student_country", "student_state",
-            "student_city", "student_zip")}),
-        ("Education Info", {"fields": ("current_education",)}),
-        ("Enquiry Info", {"fields": (
-            "country_interested", "university_interested", "course_interested", "level_applying_for","intake_interested_month", "intake_interested_year")}),
-        ("For Counsellor", {"fields": ("assigned_users", "enquiry_status", "notes",
-            "intake_interested")}),
-        ("For Counsellor", {"fields": ("assigned_users", "enquiry_status", "notes")}),
-    )
+    # fieldsets = (
+    #     ("Student Info", {"fields": ("student_First_Name", "student_Last_Name", "student_passport")}),
+    #     ("Contact Info", {"fields": (
+    #         "student_phone", "alternate_phone", "student_email", "student_address", "student_country", "student_state",
+    #         "student_city", "student_zip")}),
+    #     ("Education Info", {"fields": ("current_education",)}),
+    #     ("Enquiry Info", {"fields": (
+    #         "country_interested", "university_interested", "course_interested", "level_applying_for","intake_interested_month", "intake_interested_year")}),
+    #     ("For Counsellor", {"fields": ("assigned_users", "enquiry_status", "notes",
+    #         "intake_interested")}),
+    #     ("For Counsellor", {"fields": ("assigned_users", "enquiry_status", "notes")}),
+    # )
     jazzmin_section_order = ("Student Info", "Contact Info", "Education Info", "Enquiry Info", "For Counsellor")
 
-    list_display = (
-        'student_First_Name', 'student_Last_Name', 'student_phone', 'student_email', 'country_interested',
-        'university_interested',
-        'course_interested', 'level_applying_for', 'intake_interested_month', 'intake_interested_year',
-        'assigned_users', 'enquiry_status','notes',)
+    # list_display = (
+    #     'student_First_Name', 'student_Last_Name', 'student_phone', 'student_email', 'country_interested',
+    #     'university_interested',
+    #     'course_interested', 'level_applying_for', 'intake_interested_month', 'intake_interested_year',
+    #     'assigned_users', 'enquiry_status','notes',)
+    list_display = ("student_First_Name", )
     list_filter = (
         'student_First_Name', 'student_phone', 'student_email', 'current_education',
         'university_interested', 'course_interested', 'assigned_users', 'enquiry_status',)
