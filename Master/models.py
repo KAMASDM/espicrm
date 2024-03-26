@@ -135,6 +135,25 @@ class Work_Experience(models.Model):
     End_Date = models.DateField()
     def __str__(self):
         return self.Company_Name
+# class ielts_Exam(models.Model):
+#     Listening = models.FloatField()
+#     Reading = models.FloatField()
+#     Writing = models.FloatField()
+#     Speaking = models.FloatField()
+#     Overall = models.FloatField()
+#     def __str__(self):
+#         return self.Overall
+
+# class Toefl_Exam(models.Model):
+#     Listening = models.FloatField()
+#     Reading = models.FloatField()
+#     Writing = models.FloatField()
+#     Speaking = models.FloatField()
+#     Overall = models.FloatField()
+#     def __str__(self):
+#         return (self.Overall)
+
+
 class ielts_Exam(models.Model):
     Listening = models.FloatField(null=True)
     Reading = models.FloatField(null=True)
@@ -142,8 +161,7 @@ class ielts_Exam(models.Model):
     Speaking = models.FloatField(null=True)
     Overall = models.FloatField(null=True)
     def __str__(self):
-        return f"Overall: {self.Overall}"
-
+        return f"ielts Exam: Overall - {self.Overall}"
 
 class Toefl_Exam(models.Model):
     Listening = models.FloatField()
@@ -153,7 +171,7 @@ class Toefl_Exam(models.Model):
     Overall = models.FloatField()
 
     def __str__(self):
-        return f"Overall: {self.Overall}"
+        return f"Toefl Exam: Overall - {self.Overall}"
 
 class PTE_Exam(models.Model):
     Listening = models.FloatField()
@@ -163,35 +181,33 @@ class PTE_Exam(models.Model):
     Overall = models.FloatField()
 
     def __str__(self):
-        return f"Overall: {self.Overall}"
+        return f"PTE Exam: Overall - {self.Overall}"
+
 
 
 class Duolingo_Exam(models.Model):
     Overall = models.FloatField()
 
     def __str__(self):
-        return f"Overall: {self.Overall}"
+        return f"Duolingo Exam: Overall - {self.Overall}"
 
 
 class Gre_Exam(models.Model):
     Verbal = models.FloatField()
     Quantitative = models.FloatField()
     Analytical = models.FloatField()
-    overall = models.FloatField()
-
-    @property
+    Overall = models.FloatField()
     def __str__(self):
-        return f"Overall: {self.Overall}"
+        return f"Gre Exam: Overall - {self.Overall}"
 
 
 class Gmat_Exam(models.Model):
     Verbal = models.FloatField()
     Quantitative = models.FloatField()
     Analytical = models.FloatField()
-    overall = models.FloatField()
-
+    Overall = models.FloatField()
     def __str__(self):
-        return f"Overall: {self.Overall}"
+        return f"Gmat Exam: Overall - {self.Overall}"
 
 class tenth_std_percentage_requirement(models.Model):
     percentage = models.FloatField()
@@ -217,19 +233,62 @@ class masters_requirement(models.Model):
     def __str__(self):
         return f"Required: {self.requirement}"
 
-
 class Rejection_Reason(models.Model):
-    Refusal_Reason = models.TextField()
+    Refusal_Reason = models.TextField(null=True, blank=True)
     Refusal_Country = CountryField()
     Refusal_Visa_Category = models.CharField(max_length=100)
     Refusal_Date = models.DateField()
     Refusal_Letter = models.FileField(upload_to='refusal_letter/', blank=True)
 
 
+
     def __str__(self):
-        return self.Reason
+        return self.Refusal_Reason
 
 
 #add a field to class Rejection_Reason which is a file field to upload the refusal letter
+
+from Enquiry.models import enquiry
+from DetailEnquiry.models import Detail_Enquiry
+from Assessment.models import assessment
+
+class Report(models.Model):
+    ENQUIRY = 'Enquiry'
+    DETAIL_ENQUIRY = 'Detail_enquiry'
+    ASSESSMENT = 'assessment'
+
+    REPORT_TYPE_CHOICES = [
+        (ENQUIRY, 'Enquiry'),
+        (DETAIL_ENQUIRY, 'Detail Enquiry'),
+        (ASSESSMENT, 'assessment'),
+    ]
+
+    enquiry = models.ForeignKey(enquiry, related_name='reports', on_delete=models.CASCADE, null=True, blank=True)
+    detail_enquiry = models.ForeignKey(Detail_Enquiry, related_name='reports', on_delete=models.CASCADE, null=True, blank=True)
+    assessment = models.ForeignKey(assessment, related_name='reports', on_delete=models.CASCADE, null=True, blank=True)
+    report_file = models.FileField(upload_to='reports/')
+    report_type = models.CharField(max_length=20, choices=REPORT_TYPE_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        if self.enquiry:
+            return f"Report for Enquiry: {self.enquiry.student_First_Name} - {self.created_at}"
+        elif self.detail_enquiry:
+            return f"Report for Detail Enquiry: {self.detail_enquiry.name} - {self.created_at}"
+        elif self.assessment:
+            return f"Report for Assessment: {self.assessment.name} - {self.created_at}"
+        else:
+            return "Unknown Report"
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            if self.enquiry:
+                self.report_type = self.ENQUIRY
+            elif self.detail_enquiry:
+                self.report_type = self.DETAIL_ENQUIRY
+            elif self.assessment:
+                self.report_type = self.ASSESSMENT
+        super().save(*args, **kwargs)
+
 
 

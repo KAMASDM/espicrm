@@ -27,3 +27,20 @@ class assessment(models.Model):
     def __str__(self):
         return self.enquiry
 
+# models.py
+
+from django.db import models
+from django.dispatch import receiver
+from django.core.mail import send_mail
+from django.conf import settings
+
+
+
+@receiver(models.signals.post_save, sender=assessment)
+def send_assessment_email(sender, instance, created, **kwargs):
+    if created:
+        subject = 'Assessment Submission Confirmation'
+        message = f"Dear {instance.student_name},\n\nThank you for submitting your assessment.\n\nSincerely,\nThe Assessment Team"
+        from_email = settings.EMAIL_HOST_USER
+        to_email = instance.student_email  # Assuming you have a field for student email in your assessment model
+        send_mail(subject, message, from_email, [to_email])

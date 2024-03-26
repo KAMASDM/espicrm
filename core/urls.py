@@ -17,9 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from graphene_django.views import GraphQLView
-from Master.schema import schema
+from Master.schema import schema as master_schema
+from Enquiry.schema import schema as enquiry_schema
+from Application.schema import schema as application_schema
+from Assessment.schema import schema as assessment_schema
+from DetailEnquiry.schema import schema as detail_enquiry_schema
 
 urlpatterns = [
-    path("graphql/", GraphQLView.as_view(graphiql=True, schema=schema)),
     path('admin/', admin.site.urls),
+    path('graphql/master/', GraphQLView.as_view(graphiql=True, schema=master_schema), name='graphql-master'),
+    path('graphql/enquiry/', GraphQLView.as_view(graphiql=True, schema=enquiry_schema), name='graphql-enquiry'),
+    path('graphql/application/', GraphQLView.as_view(graphiql=True, schema=application_schema), name='graphql-application'),
+    path('graphql/assessment/', GraphQLView.as_view(graphiql=True, schema=assessment_schema), name='graphql-assessment'),
+    path('graphql/detail-enquiry/', GraphQLView.as_view(graphiql=True, schema=detail_enquiry_schema), name='graphql-detail-enquiry'),
 ]
