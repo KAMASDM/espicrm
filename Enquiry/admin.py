@@ -13,7 +13,7 @@ class EnquiryList(admin.ModelAdmin):
         ("Enquiry Info", {"fields": (
             "country_interested", "university_interested", "course_interested", "level_applying_for",
             "intake_interested_month", "intake_interested_year")}),
-        ("For Counsellor", {"fields": ("assigned_users", "enquiry_status", "notes")}),
+        ("For Counsellor", {"fields": ("assigned_users", "enquiry_status", "notes",)}),
     )
     jazzmin_section_order = ("Student Info", "Contact Info", "Education Info", "Enquiry Info", "For Counsellor")
 
@@ -21,7 +21,7 @@ class EnquiryList(admin.ModelAdmin):
         'student_First_Name', 'student_Last_Name', 'student_phone', 'student_email', 'country_interested',
         'university_interested',
         'course_interested', 'level_applying_for', 'intake_interested_month', 'intake_interested_year',
-        'assigned_users', 'enquiry_status','notes', )
+        'assigned_users', 'enquiry_status','notes',)
 
     list_filter = (
         'student_First_Name', 'student_phone', 'student_email', 'current_education',
@@ -38,3 +38,4 @@ class EnquiryList(admin.ModelAdmin):
 
 
 admin.site.register(enquiry, EnquiryList)
+

@@ -128,9 +128,9 @@ class GmatExamType(DjangoObjectType):
         model = Gmat_Exam
 
 
-class RejectionReasonType(DjangoObjectType):
-    class Meta:
-        model = Rejection_Reason
+# class RejectionReasonType(DjangoObjectType):
+#     class Meta:
+#         model = Rejection_Reason
 
 
 class Query(graphene.ObjectType):
@@ -154,7 +154,7 @@ class Query(graphene.ObjectType):
     all_duolingo_exams = graphene.List(DuolingoExamType)
     all_gre_exams = graphene.List(GreExamType)
     all_gmat_exams = graphene.List(GmatExamType)
-    all_rejection_reasons = graphene.List(RejectionReasonType)
+    # all_rejection_reasons = graphene.List(RejectionReasonType)
 
     def resolve_all_countries(self, info, **kwargs):
             return country.objects.all()
@@ -216,8 +216,8 @@ class Query(graphene.ObjectType):
     def resolve_all_gmat_exams(self, info):
         return Gmat_Exam.objects.all()
 
-    def resolve_all_rejection_reasons(self, info):
-        return Rejection_Reason.objects.all()
+    # def resolve_all_rejection_reasons(self, info):
+    #     return Rejection_Reason.objects.all()
 
 
 schema = graphene.Schema(query=Query)                                                                                                                                                                                                                                                                                     

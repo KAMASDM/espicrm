@@ -11,13 +11,12 @@ class DetailEnquiryAdmin(admin.ModelAdmin):
 
     # Enable filters
     list_filter = (
-    'level', 'Work_Experience', 'Toefl_Exam', 'ielts_Exam', 'PTE_Exam', 'Duolingo_Exam', 'Gre_Exam', 'Gmat_Exam',
-    'Refusal')
+    'level', 'Work_Experience', 'Toefl_Exam', 'ielts_Exam', 'PTE_Exam', 'Duolingo_Exam', 'Gre_Exam', 'Gmat_Exam','Refusal')
 
     # Fieldsets to organize the form view
     fieldsets = (
         ('Basic Information', {
-            'fields': ('Current_Enquiry', 'level', 'Work_Experience')
+            'fields': ('Current_Enquiry', 'level', 'Work_Experience','Refusal')
         }),
         ('Examination Details', {
             'fields': ('Toefl_Exam', 'ielts_Exam', 'PTE_Exam', 'Duolingo_Exam', 'Gre_Exam', 'Gmat_Exam'),

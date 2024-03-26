@@ -17,7 +17,7 @@ class Detail_Enquiry(models.Model):
     Gmat_Exam = models.ForeignKey(Gmat_Exam, on_delete=models.CASCADE)
     Father_Occupation = models.CharField(max_length=100)
     Father_Annual_Income = models.FloatField()
-    Refusal = models.ForeignKey(Rejection_Reason, on_delete=models.CASCADE)
+    Refusal = models.ForeignKey(Rejection_Reason, on_delete=models.CASCADE,null=True)
     Twelveth_Document = models.FileField(upload_to='documents/')
     Tenth_Document = models.FileField(upload_to='documents/')
     Graduation_Marksheet = models.FileField(upload_to='documents/')
