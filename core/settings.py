@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'DetailEnquiry',
     'jazzmin',
     'graphene_django',
+    'import_export',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

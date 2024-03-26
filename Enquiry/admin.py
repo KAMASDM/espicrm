@@ -12,16 +12,26 @@ class EnquiryList(admin.ModelAdmin):
         ("Education Info", {"fields": ("current_education",)}),
         ("Enquiry Info", {"fields": (
             "country_interested", "university_interested", "course_interested", "level_applying_for",
+<<<<<<< HEAD
             "intake_interested_month", "intake_interested_year")}),
         ("For Counsellor", {"fields": ("assigned_users", "enquiry_status", "notes",)}),
+=======
+            "intake_interested")}),
+        ("For Counsellor", {"fields": ("assigned_users", "enquiry_status", "notes")}),
+>>>>>>> 02d61555ab4388c20bf2e53b9f8c74d0bef9eb18
     )
     jazzmin_section_order = ("Student Info", "Contact Info", "Education Info", "Enquiry Info", "For Counsellor")
 
     list_display = (
         'student_First_Name', 'student_Last_Name', 'student_phone', 'student_email', 'country_interested',
         'university_interested',
+<<<<<<< HEAD
         'course_interested', 'level_applying_for', 'intake_interested_month', 'intake_interested_year',
         'assigned_users', 'enquiry_status','notes',)
+=======
+        'course_interested', 'level_applying_for', 'intake_interested',
+        'assigned_users', 'enquiry_status','notes', )
+>>>>>>> 02d61555ab4388c20bf2e53b9f8c74d0bef9eb18
 
     list_filter = (
         'student_First_Name', 'student_phone', 'student_email', 'current_education',
@@ -33,7 +43,7 @@ class EnquiryList(admin.ModelAdmin):
     search_fields = ('student_First_Name', 'student_Last_Name', 'student_phone', 'student_email', 'current_education',
                      'country_interested',
                      'university_interested',
-                     'course_interested', 'level_applying_for', 'intake_interested_month', 'intake_interested_year',
+                     'course_interested', 'level_applying_for', 'intake_interested',
                      'assigned_users', 'enquiry_status',)
 
 
