@@ -59,21 +59,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'core.urls'
 
-import os
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
-
-# Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
-EMAIL_USE_TLS = True  # Or False if you're using SSL
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -137,7 +122,7 @@ JAZZMIN_SETTINGS = {
 
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string
-    "search_model": ["auth.User", "auth.Group"],
+    "search_model": ["auth.User", "auth.Group",],
 
     # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
     "user_avatar": None,
@@ -149,18 +134,12 @@ JAZZMIN_SETTINGS = {
     # Links to put along the top menu
     "topmenu_links": [
 
-        
-        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+      {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
 
-        {"name": "Enquiry", "url": "/admin/Enquiry/enquiry/", "permissions": ["auth.view_user"]},
-
-        {"name": "Assessment", "url": "/admin/Assessment/assessment/", "permissions": ["auth.view_user"]},
-
-        {"model": "auth.User"},
-
-        {"name": "Support", "url": "https://espiconsultants.com/", "new_window": True},
-        
     ],
+
+    # Other Jazzmin settings...
+
 
     #############
     # User Menu #
@@ -209,7 +188,7 @@ JAZZMIN_SETTINGS = {
     # Related Modal #
     #################
     # Use modals instead of popups
-    "related_modal_active": False,
+    "related_modal_active": True,
 
     #############
     # UI Tweaks #

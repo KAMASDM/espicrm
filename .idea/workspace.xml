@@ -4,42 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aff46729-7727-4a9c-b36b-299ee3c94569" name="Changes" comment="Second Major Push with list displays, filters, Fieldsets and other functionalities.">
-      <change afterPath="$PROJECT_DIR$/Application/migrations/0002_alter_application_application_status_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assessment/migrations/0002_alter_assessment_enquiry.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assessment/migrations/0003_rename_intake_interested_month_assessment_intake_interested_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assessment/migrations/0004_assessment_ass_status_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DetailEnquiry/migrations/0002_alter_detail_enquiry_duolingo_exam_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Enquiry/migrations/0002_rename_intake_interested_month_enquiry_intake_interested_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0003_university_application_form_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0004_alter_university_newsletter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0005_alter_university_newsletter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0006_bachelor_requirement_masters_requirement_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0007_university_remark.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0008_remove_university_university_status_course_remark.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0009_delete_intake_year_intake_intake_name_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0010_remove_course_documents_required_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0011_rejection_reason_refusal_letter_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0012_alter_university_univ_logo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0013_alter_course_bachelor_requirement_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0014_alter_course_duolingo_exam_alter_course_gmat_exam_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0015_alter_course_course_levels_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0016_alter_ielts_exam_listening_alter_ielts_exam_overall_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application_forms/Resham-5yearContract-ApplicationForm.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Application/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Application/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assessment/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Assessment/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assessment/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Assessment/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetailEnquiry/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetailEnquiry/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetailEnquiry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetailEnquiry/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enquiry/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Enquiry/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enquiry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Enquiry/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Master/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Master/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Master/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Master/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-    </list>
+    <list default="true" id="aff46729-7727-4a9c-b36b-299ee3c94569" name="Changes" comment="Second Major Push with list displays, filters, Fieldsets and other functionalities." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,7 +78,23 @@
       <option name="project" value="LOCAL" />
       <updated>1710931510065</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Second Major Push with list displays, filters, Fieldsets and other functionalities.">
+      <option name="closed" value="true" />
+      <created>1711110983878</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1711110983878</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Second Major Push with list displays, filters, Fieldsets and other functionalities.">
+      <option name="closed" value="true" />
+      <created>1711466815770</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711466815770</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
