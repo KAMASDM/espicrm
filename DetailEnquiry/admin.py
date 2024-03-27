@@ -56,6 +56,7 @@ class DetailEnquiryAdmin(admin.ModelAdmin):
     )
 
 
+    # Add a custom method to display the pending amount
     def Pending_Amount(self, obj):
         return obj.Confirmed_Services.aggregate(total=models.Sum('Price'))['total'] or 0
 

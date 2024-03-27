@@ -5,40 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aff46729-7727-4a9c-b36b-299ee3c94569" name="Changes" comment="Second Major Push with list displays, filters, Fieldsets and other functionalities.">
-      <change afterPath="$PROJECT_DIR$/.idea/developer-tools.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DetailEnquiry/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Enquiry/charts.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Enquiry/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master/migrations/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/Application/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/migrations/0002_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Application/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/schema.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assessment/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/Assessment/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assessment/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Assessment/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assessment/schema.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DetailEnquiry/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetailEnquiry/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetailEnquiry/migrations/0002_alter_detail_enquiry_duolingo_exam_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetailEnquiry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetailEnquiry/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetailEnquiry/schema.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Enquiry/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Enquiry/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enquiry/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enquiry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Enquiry/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enquiry/schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/Enquiry/schema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enquiry/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Enquiry/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Master/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Master/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Master/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Master/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Master/schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/Master/schema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/exportToHTML" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -84,7 +62,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -145,6 +124,7 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="added Front Folder" />
     <MESSAGE value="First Push" />
+    <MESSAGE value="new update" />
     <MESSAGE value="Second Major Push with list displays, filters, Fieldsets and other functionalities." />
     <option name="LAST_COMMIT_MESSAGE" value="Second Major Push with list displays, filters, Fieldsets and other functionalities." />
   </component>

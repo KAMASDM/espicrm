@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.db import models
 
 from .models import enquiry, enquiry_status
-from Master.models import Available_Services
+from import_export.admin import ImportExportMixin
 
 
 
@@ -12,7 +12,7 @@ from Master.models import Available_Services
 
 
 
-class EnquiryList(admin.ModelAdmin):
+class EnquiryList(ImportExportMixin,admin.ModelAdmin):
     fieldsets = (
         ("Student Info", {"fields": ("student_First_Name", "student_Last_Name", "student_passport",'Source_Enquiry')}),
         ("Contact Info", {"fields": (
@@ -47,13 +47,21 @@ class EnquiryList(admin.ModelAdmin):
                      'course_interested', 'level_applying_for', 'intake_interested',
                      'assigned_users', 'enquiry_status',)
 
+
+
+#Update enquiry status to Processed is a Action Function to Update the status of all the selected enquiry to Processed
     def update_enquiry_status(modeladmin, request, queryset):
         processed_status = enquiry_status.objects.get(status='Processed')
         queryset.update(enquiry_status=processed_status)
     update_enquiry_status.short_description = "Update status to Processed"
 
+
+#Interested_service is a function to get the services selected by the student AND SHOW IT IN LIST DISPLAY
     def Interested_service(self, obj):
         return ', '.join([a.Services for a in obj.Interested_Services.all()])
+
+
+#Total Price is a function to get the total price of the services selected by the student AND SHOW IT IN LIST DISPLAY
 
     def total_price(self, obj):
         return obj.Interested_Services.aggregate(total=models.Sum('Price'))['total'] or 0
