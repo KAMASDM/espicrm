@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aff46729-7727-4a9c-b36b-299ee3c94569" name="Changes" comment="Second Major Push with list displays, filters, Fieldsets and other functionalities.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Master/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Master/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Master/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Master/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-    </list>
+    <list default="true" id="aff46729-7727-4a9c-b36b-299ee3c94569" name="Changes" comment="Second Major Push with list displays, filters, Fieldsets and other functionalities." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -128,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711547560992</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Second Major Push with list displays, filters, Fieldsets and other functionalities.">
+      <option name="closed" value="true" />
+      <created>1711572813159</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711572813159</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
