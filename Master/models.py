@@ -248,6 +248,21 @@ class Enquiry_Source(models.Model):
     def __str__(self):
         return self.Source
 
+class Payment_Type(models.Model):
+    Type = models.CharField(max_length=100)
+    def __str__(self):
+        return self.Type
+
+class Payment_Status(models.Model):
+    Status = models.CharField(max_length=100)
+    def __str__(self):
+        return self.Status
+
+class Payment_Mode(models.Model):
+    Mode = models.CharField(max_length=100)
+    def __str__(self):
+        return self.Mode
+
 
 #add a field to class Rejection_Reason which is a file field to upload the refusal letter
 
