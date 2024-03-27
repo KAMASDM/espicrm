@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'jazzmin',
     'graphene_django',
     'import_export',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -88,6 +89,7 @@ DATABASES = {
     }
 }
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
@@ -122,7 +124,8 @@ JAZZMIN_SETTINGS = {
 
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string
-    "search_model": ["auth.User", "auth.Group",],
+    #"search_model": ["auth.User", "auth.Group",],
+   #"search_model": "Enquiry.enquiry",
 
     # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
     "user_avatar": None,
@@ -135,6 +138,34 @@ JAZZMIN_SETTINGS = {
     "topmenu_links": [
 
       {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+
+      {
+            "name": "Enquiry",
+            "app": "Enquiry",
+            "model": "enquiry",
+            "url": "/admin/Enquiry/enquiry/",
+        },
+
+      {
+            "name": "DetailEnquiry",
+            "app": "DetailEnquiry",
+            "model": "Detail_Enquiry",
+            "url": "/admin/DetailEnquiry/detail_enquiry/",
+        },
+
+     {
+            "name": "Assessments",
+            "app": "Assessment",
+            "model": "assessment",
+            "url": "/admin/Assessment/assessment/",
+        },
+
+    {
+            "name": "Application",
+            "app": "Application",
+            "model": "Application",
+            "url": "/admin/Application/application/",
+        },
 
     ],
 

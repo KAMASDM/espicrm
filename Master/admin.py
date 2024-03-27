@@ -5,7 +5,7 @@ from .models import country, course_levels, intake, current_education, documents
     enquiry_status, application_status, Course, university, assessment_status, Edu_Level,Work_Experience, \
      Rejection_Reason
 from Master.models import twelfth_std_percentage_requirement, bachelor_requirement, masters_requirement, tenth_std_percentage_requirement, \
-    ielts_Exam, PTE_Exam, Toefl_Exam, Duolingo_Exam, Gre_Exam, Gmat_Exam
+    ielts_Exam, PTE_Exam, Toefl_Exam, Duolingo_Exam, Gre_Exam, Gmat_Exam,Available_Services,Detail_Enquiry_Status,Enquiry_Source
 
 
 from import_export.admin import ImportExportMixin
@@ -110,6 +110,10 @@ admin.site.register(tenth_std_percentage_requirement)
 admin.site.register(twelfth_std_percentage_requirement)
 admin.site.register(bachelor_requirement)
 admin.site.register(masters_requirement)
+admin.site.register(Available_Services)
+admin.site.register(Detail_Enquiry_Status)
+admin.site.register(Enquiry_Source)
+
 
 
 
