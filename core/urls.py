@@ -16,16 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from graphene_django.views import GraphQLView
+# from graphene_django.views import GraphQLView
 from Master.schema import schema
 from rest_framework import routers
-from Enquiry import views
-
+from Enquiry.views  import EnquiryViewSet
+from DetailEnquiry.views  import DetailEnquiryViewSet
+from Assessment.views import AssessmentViewSet
+from Application.views import ApplicationViewSet
+from Accounts.views import PaymentViewSet
 router = routers.DefaultRouter()
-router.register(r'enquiries', views.EnquiryViewSet)
+router.register(r'enquiries', EnquiryViewSet)
+router.register(r'detailsEnquiry',DetailEnquiryViewSet)
+router.register(r'assesment',AssessmentViewSet )
+router.register(r'application',ApplicationViewSet )
+router.register(r'payments', PaymentViewSet)
 
 urlpatterns = [
-    path("graphql/", GraphQLView.as_view(graphiql=True, schema=schema)),
+    # path("graphql/", GraphQLView.as_view(graphiql=True, schema=schema)),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
 ]
