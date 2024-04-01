@@ -137,3 +137,8 @@ class EnquiryList(ImportExportMixin,admin.ModelAdmin):
 
         
 admin.site.register(enquiry, EnquiryList)
+# from django.contrib import admin
+# from admin_charts.models import Chart
+
+# # Register your models here.
+# admin.site.register(Chart)

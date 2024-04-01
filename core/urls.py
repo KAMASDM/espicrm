@@ -35,4 +35,5 @@ urlpatterns = [
     # path("graphql/", GraphQLView.as_view(graphiql=True, schema=schema)),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    # path('admin_charts/', include('admin_charts.urls')),
 ]
