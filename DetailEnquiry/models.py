@@ -74,6 +74,8 @@ class Detail_Enquiry(models.Model):
         student_email = self.Current_Enquiry.student_email
         student_email_message = EmailMessage(student_subject, student_message, settings.DEFAULT_FROM_EMAIL, [student_email])
         student_email_message.send()
+        
+    
 
 
 
