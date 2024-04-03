@@ -4,7 +4,8 @@ from django.db import models
 from Enquiry.models import enquiry
 from Master.models import (Edu_Level, Work_Experience, Toefl_Exam, ielts_Exam, PTE_Exam,
                            Duolingo_Exam, Gre_Exam, Gmat_Exam, Rejection_Reason, Available_Services,Detail_Enquiry_Status)
-
+from django.core.mail import EmailMessage
+from django.conf import settings
 class Detail_Enquiry(models.Model):
 
     Current_Enquiry = models.ForeignKey(enquiry, on_delete=models.CASCADE)
@@ -42,6 +43,36 @@ class Detail_Enquiry(models.Model):
 
     def __str__(self):
             return (f"{self.Current_Enquiry}")
+        
+    def save(self, *args, **kwargs):
+            # Call the original save method
+        super().save(*args, **kwargs)
+        
+        # Send email to admin
+        admin_subject = "New Detail Enquiry Submitted"
+        admin_message = (
+            f"A new Detail enquiry has been submitted with ID: {self.id}."
+        )
+        admin_email = settings.ADMIN_EMAIL
+        admin_email_message = EmailMessage(admin_subject, admin_message, settings.DEFAULT_FROM_EMAIL, [admin_email])
+        admin_email_message.send()
+        
+        # Send email to student
+        student_subject = "Thank You for Your Detail Enquiry"
+        student_message = (
+            f"Thank you for your Detail Enquiry. We will get back to you shortly."
+            
+
+        )
+        for field in self._meta.fields:
+                # Get the field name and its value for the current instance
+            field_name = field.name
+            field_value = getattr(self, field_name)
+            # Append field name and value to the email message
+            student_message += f"{field_name.capitalize()}: {field_value}\n"
+        student_email = self.Current_Enquiry.student_email
+        student_email_message = EmailMessage(student_subject, student_message, settings.DEFAULT_FROM_EMAIL, [student_email])
+        student_email_message.send()
 
 
 

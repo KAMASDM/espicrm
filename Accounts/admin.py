@@ -8,7 +8,7 @@ from django.db import models
 
 
 class PaymentListAdmin(admin.ModelAdmin):
-    list_display = ('payment_id','Payment_Type', 'Payment', 'payment_date','payment_amount','payment_mode','payment_status','payment_reference','payment_remarks','payment_document','Pending_Amount')
+    list_display = ('payment_id','Payment_Type','payment_date','payment_amount','payment_mode','payment_status','payment_reference','payment_remarks','payment_document','Pending_Amount')
 
     list_filter = ('payment_id','Payment_Type', 'Payment_For', 'payment_date','payment_amount','payment_mode','payment_status','payment_reference','payment_remarks','payment_document')
 
