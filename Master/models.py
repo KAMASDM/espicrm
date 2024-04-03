@@ -4,6 +4,16 @@ from django_countries.fields import CountryField
 #from Master.models import Toefl_Exam, ielts_Exam, PTE_Exam, Duolingo_Exam, Gre_Exam, Gmat_Exam, bachelor_requirement
 
 
+
+
+
+
+
+class CountryInterested(models.Model):
+    country = models.CharField(max_length=100, blank=True)
+    def __str__(self):
+        return self.country
+
 # Create your models here.
 class country(models.Model):
     country = CountryField(blank_label="(select country)")
@@ -71,7 +81,7 @@ class application_status(models.Model):
 class university(models.Model):
 
     univ_name = models.CharField(max_length=100)
-    country = CountryField(blank_label="(select country)", blank=True, null=True)
+    country = models.ForeignKey(CountryInterested,on_delete=models.CASCADE, blank=True, )
     univ_desc = models.CharField(max_length=1000, blank=True, null=True)
     univ_logo = models.ImageField(upload_to="media", blank=True, null=True)
     univ_phone = models.CharField(max_length=10, blank=True, null=True)

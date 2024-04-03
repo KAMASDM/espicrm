@@ -1,7 +1,8 @@
 from django.db import models
+from smart_selects.db_fields import ChainedForeignKey
 
 # Create your models here.
-from Master.models import course_levels, intake, Course, university, assessment_status
+from Master.models import course_levels, intake, Course, university, assessment_status, CountryInterested
 from DetailEnquiry.models import Detail_Enquiry
 from django.contrib.auth import get_user_model
 from django_countries.fields import CountryField
@@ -11,10 +12,24 @@ from django.conf import settings
 class assessment(models.Model):
     assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     enquiry = models.ForeignKey(Detail_Enquiry, on_delete=models.CASCADE)
-    student_country = CountryField(blank_label="(select country)", blank=True, null=True)
-    university = models.ForeignKey(university, on_delete=models.CASCADE, blank=True, null=True)
+    student_country = models.ForeignKey(CountryInterested, on_delete=models.CASCADE, blank=True,)
+    university = ChainedForeignKey(
+        university,
+        chained_field="student_country",
+        chained_model_field="country",
+        show_all=False,
+        auto_choose=True,
+        sort=True,)
     level_applying_for = models.ForeignKey(course_levels, on_delete=models.CASCADE, blank=True, null=True)
-    course_interested = models.ForeignKey(Course, on_delete=models.CASCADE, blank=True, null=True)
+    course_interested = ChainedForeignKey(
+        Course,
+        chained_field="university",
+        chained_model_field="university",
+        show_all=False,
+        auto_choose=True,
+        sort=True,
+        blank=True,
+    )
     intake_interested = models.ForeignKey(intake, on_delete=models.CASCADE, blank=True, null=True)
     specialisation = models.CharField(max_length=100, blank=True, null=True)
     duration = models.CharField(max_length=100, blank=True, null=True)
