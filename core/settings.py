@@ -37,11 +37,11 @@ INSTALLED_APPS = [
     'Application',
     'DetailEnquiry',
     'Accounts',
-    # 'admin_charts',
     'jazzmin',
     'graphene_django',
     'import_export',
     'rest_framework',
+    'smart_selects',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,7 +66,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -93,6 +93,9 @@ DATABASES = {
 }
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+SMART_SELECTS_USE_DJANGO_JQUERY = True
+
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
@@ -331,12 +334,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_HOST_USER = "noreply.studystreak@gmail.com"
-EMAIL_HOST_PASSWORD = "sypowsabvnbqjhrv"
-EMAIL_USE_TLS = True
-
-DEFAULT_FROM_EMAIL = 'noreply.studystreak@gmail.com'
-ADMIN_EMAIL = 'mehulasc@gmail.com'
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = "smtp.gmail.com"
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = "noreply.studystreak@gmail.com"
+# EMAIL_HOST_PASSWORD = "sypowsabvnbqjhrv"
+# EMAIL_USE_TLS = True
+#
+# DEFAULT_FROM_EMAIL = 'noreply.studystreak@gmail.com'
+# ADMIN_EMAIL = 'mehulasc@gmail.com'

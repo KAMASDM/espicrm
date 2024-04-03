@@ -1,7 +1,8 @@
 from django.db import models
-
+from smart_selects.db_fields import ChainedForeignKey
 # Create your models here.
-from Master.models import course_levels, intake, current_education, enquiry_status, Course, university,Available_Services,Enquiry_Source
+from Master.models import course_levels, intake, current_education, enquiry_status, Course, university,Available_Services,Enquiry_Source \
+    ,CountryInterested
 from django.contrib.auth import get_user_model
 from django_countries.fields import CountryField
 
@@ -28,9 +29,25 @@ class enquiry(models.Model):
     current_education = models.ForeignKey(current_education, on_delete=models.CASCADE)
 
     # Enquiry Info
-    country_interested = CountryField(blank_label="(select country)", default="GB")
-    university_interested = models.ForeignKey(university, on_delete=models.CASCADE)
-    course_interested = models.ForeignKey(Course, on_delete=models.CASCADE)
+    country_interested = models.ForeignKey(CountryInterested,on_delete=models.CASCADE)
+    university_interested = ChainedForeignKey(
+        university,
+        chained_field="country_interested",
+        chained_model_field="country",
+        show_all=False,
+        auto_choose=True,
+        sort=True,
+        blank=True,
+    )
+    course_interested = ChainedForeignKey(
+        Course,
+        chained_field="university_interested",
+        chained_model_field="university",
+        show_all=False,
+        auto_choose=True,
+        sort=True,
+        blank=True,
+    )
     level_applying_for = models.ForeignKey(course_levels, on_delete=models.CASCADE)
     intake_interested = models.ForeignKey(intake, on_delete=models.CASCADE)
     Interested_Services = models.ManyToManyField(Available_Services,blank=True, related_name="Interested_Services", default='Counselling')
