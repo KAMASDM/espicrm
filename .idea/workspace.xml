@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aff46729-7727-4a9c-b36b-299ee3c94569" name="Changes" comment="Second Major Push with list displays, filters, Fieldsets and other functionalities.">
-      <change afterPath="$PROJECT_DIR$/templates/admin/base.html" afterDir="false" />
+    <list default="true" id="aff46729-7727-4a9c-b36b-299ee3c94569" name="Changes" comment="Chained foreign key implementation">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Enquiry/migrations/0012_continent_country_location.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assessment/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Assessment/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetailEnquiry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/DetailEnquiry/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enquiry/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Enquiry/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enquiry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Enquiry/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Master/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Master/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Master/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Master/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
@@ -76,7 +71,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "JigarNew",
+    "git-widget-placeholder": "Merging JigarNew",
     "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
   }
 }]]></component>
@@ -172,6 +167,7 @@
     <MESSAGE value="First Push" />
     <MESSAGE value="new update" />
     <MESSAGE value="Second Major Push with list displays, filters, Fieldsets and other functionalities." />
-    <option name="LAST_COMMIT_MESSAGE" value="Second Major Push with list displays, filters, Fieldsets and other functionalities." />
+    <MESSAGE value="Chained foreign key implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Chained foreign key implementation" />
   </component>
 </project>

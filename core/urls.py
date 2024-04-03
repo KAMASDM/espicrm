@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 # from graphene_django.views import GraphQLView
 from Master.schema import schema
 from rest_framework import routers
@@ -30,11 +30,17 @@ router.register(r'detailsEnquiry',DetailEnquiryViewSet)
 router.register(r'assesment',AssessmentViewSet )
 router.register(r'application',ApplicationViewSet )
 router.register(r'payments', PaymentViewSet)
+# from smart_selects.views import ChainedSelectView
 
 urlpatterns = [
     # path("graphql/", GraphQLView.as_view(graphiql=True, schema=schema)),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+<<<<<<< HEAD
     path('chaining/', include('smart_selects.urls')),
     # path('admin_charts/', include('admin_charts.urls')),
+=======
+    # path('chained_filter/', ChainedSelectView.as_view(), name='chained_filter'),
+    re_path(r'^chaining/', include('smart_selects.urls'))
+>>>>>>> cf90b75cb1725c521548e49067027629876a6c36
 ]
