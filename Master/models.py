@@ -5,6 +5,11 @@
 
 
 # # Create your models here.
+
+# class CountryInterested(models.Model):
+#     country = models.CharField(max_length=100, blank=True)
+#     def __str__(self):
+#         return self.country
 # class country(models.Model):
 #     country = CountryField(blank_label="(select country)")
 #     def __str__(self):
@@ -273,6 +278,14 @@ from django_countries.fields import CountryField
 #from Master.models import Toefl_Exam, ielts_Exam, PTE_Exam, Duolingo_Exam, Gre_Exam, Gmat_Exam, bachelor_requirement
 from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
+
+
+class CountryInterested(models.Model):
+    country = models.CharField(max_length=100, blank=True)
+    def __str__(self):
+        return self.country
+
+
 class country(models.Model):
     country = CountryField(blank_label="(select country)")
     def __str__(self):
