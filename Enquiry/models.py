@@ -4,7 +4,8 @@ from django.db import models
 from Master.models import course_levels, intake, current_education, enquiry_status, Course, university,Available_Services,Enquiry_Source
 from django.contrib.auth import get_user_model
 from django_countries.fields import CountryField
-
+from django.core.validators import MinLengthValidator, MaxLengthValidator, MinValueValidator, MaxValueValidator
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 class enquiry(models.Model):
@@ -22,7 +23,7 @@ class enquiry(models.Model):
     student_country = CountryField(blank_label="(select country)", default="IN")
     student_state = models.CharField(max_length=100)
     student_city = models.CharField(max_length=100)
-    student_zip = models.CharField(max_length=10)
+    student_zip = models.CharField(max_length=10, validators=[MinLengthValidator(6), MaxLengthValidator(10)])
 
     # Education Info
     current_education = models.ForeignKey(current_education, on_delete=models.CASCADE)
@@ -40,9 +41,14 @@ class enquiry(models.Model):
     assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default="")
     enquiry_status = models.ForeignKey(enquiry_status, on_delete=models.CASCADE)
     notes = models.TextField()
+    
+    def clean(self):
+        if self.student_phone == self.alternate_phone:
+            raise ValidationError("Alternate phone number cannot be same as student phone number.")
 
     def __str__(self):
         return (f"{self.student_First_Name} - {self.country_interested} - {self.level_applying_for} "
                 f"- {self.intake_interested}")
 
 
+####Enquiry
