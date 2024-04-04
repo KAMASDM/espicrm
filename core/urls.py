@@ -36,11 +36,7 @@ urlpatterns = [
     # path("graphql/", GraphQLView.as_view(graphiql=True, schema=schema)),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-<<<<<<< HEAD
     path('chaining/', include('smart_selects.urls')),
     # path('admin_charts/', include('admin_charts.urls')),
-=======
-    # path('chained_filter/', ChainedSelectView.as_view(), name='chained_filter'),
-    re_path(r'^chaining/', include('smart_selects.urls'))
->>>>>>> cf90b75cb1725c521548e49067027629876a6c36
-]
+    ]
+
