@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from .models import (
+    CountryInterested,
     country, course_levels, Available_Services, current_education,
     intake, documents_required, course_requirements, enquiry_status,
     assessment_status, application_status, university, Course,
@@ -10,6 +11,7 @@ from .models import (
     Payment_Type, Payment_Status, Payment_Mode
 )
 from .serializers import (
+    CountryInterestedSerializer,
     CountrySerializer, CourseLevelsSerializer, AvailableServicesSerializer,
     CurrentEducationSerializer, IntakeSerializer, DocumentsRequiredSerializer,
     CourseRequirementsSerializer, EnquiryStatusSerializer, AssessmentStatusSerializer,
@@ -22,6 +24,9 @@ from .serializers import (
     EnquirySourceSerializer, PaymentTypeSerializer, PaymentStatusSerializer,
     PaymentModeSerializer
 )
+class CountryInterestedViewSet(viewsets.ModelViewSet):
+    queryset = CountryInterested.objects.all()
+    serializer_class = CountryInterestedSerializer
 
 class CountryViewSet(viewsets.ModelViewSet):
     queryset = country.objects.all()

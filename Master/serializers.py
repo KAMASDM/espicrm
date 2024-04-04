@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import (
+from .models import (CountryInterested,
     country, course_levels, Available_Services, current_education,
     intake, documents_required, course_requirements, enquiry_status,
     assessment_status, application_status, university, Course,
@@ -9,7 +9,10 @@ from .models import (
     Rejection_Reason, Detail_Enquiry_Status, Enquiry_Source,
     Payment_Type, Payment_Status, Payment_Mode
 )
-
+class CountryInterestedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CountryInterested
+        fields = '__all__'
 class CountrySerializer(serializers.ModelSerializer):
     class Meta:
         model = country
