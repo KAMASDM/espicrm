@@ -1,0 +1,107 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"aff46729-7727-4a9c-b36b-299ee3c94569\" name=\"Changes\" comment=\"Chained foreign key implementation\">\n      <change afterPath=\"$PROJECT_DIR$/.gitignore\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/Enquiry/migrations/0012_continent_country_location.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/core/settings.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/core/settings.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/core/urls.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/core/urls.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/db.sqlite3\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/db.sqlite3\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ExportToHTMLSettings\">\n    <option name=\"OUTPUT_DIRECTORY\" value=\"$PROJECT_DIR$/exportToHTML\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n        <option value=\"HTML File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\n      <list>\n        <option value=\"ASC &lt;anantsoftcomputing@gmail.com&gt;\" />\n      </list>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;anantsoftcomputin&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">\n    <option name=\"selectedUrlAndAccountId\">\n      <UrlAndAccount>\n        <option name=\"accountId\" value=\"517b0776-af51-4339-a2c8-8c89b3b254a5\" />\n        <option name=\"url\" value=\"https://github.com/anantsoftcomputin/espi-django.git\" />\n      </UrlAndAccount>\n    </option>\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;customColor&quot;: &quot;&quot;,\n  &quot;associatedIndex&quot;: 5\n}</component>\n  <component name=\"ProjectId\" id=\"2dsRYbjCliSBtUfplhWIILErsU6\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"git-widget-placeholder\": \"Merging JigarNew\",\n    \"settings.editor.selected.configurable\": \"project.propVCSSupport.Mappings\"\n  }\n}]]></component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"aff46729-7727-4a9c-b36b-299ee3c94569\" name=\"Changes\" comment=\"\" />\n      <created>1710794850006</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1710794850006</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"First Push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1710931510065</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1710931510065</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Second Major Push with list displays, filters, Fieldsets and other functionalities.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711110983878</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711110983878</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Second Major Push with list displays, filters, Fieldsets and other functionalities.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711466815770</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711466815770</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"Second Major Push with list displays, filters, Fieldsets and other functionalities.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711547474077</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711547474077</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"Second Major Push with list displays, filters, Fieldsets and other functionalities.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711547560992</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711547560992</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"Second Major Push with list displays, filters, Fieldsets and other functionalities.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711572813159</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711572813159</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Second Major Push with list displays, filters, Fieldsets and other functionalities.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711573052495</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711573052495</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"8\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT\" value=\"true\" />\n    <MESSAGE value=\"added Front Folder\" />\n    <MESSAGE value=\"First Push\" />\n    <MESSAGE value=\"new update\" />\n    <MESSAGE value=\"Second Major Push with list displays, filters, Fieldsets and other functionalities.\" />\n    <MESSAGE value=\"Chained foreign key implementation\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Chained foreign key implementation\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7205c7a5adfbdfdaa81e41dab767fab82c140585)
++++ b/.idea/workspace.xml	(date 1712215300705)
+@@ -4,14 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="aff46729-7727-4a9c-b36b-299ee3c94569" name="Changes" comment="Chained foreign key implementation">
+-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Enquiry/migrations/0012_continent_country_location.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+-    </list>
++    <list default="true" id="aff46729-7727-4a9c-b36b-299ee3c94569" name="Changes" comment="Merge pull request #7 from KAMASDM/JigarNew&#10;&#10;Chained foreign key implementation" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -34,6 +27,7 @@
+         <option value="ASC &lt;anantsoftcomputing@gmail.com&gt;" />
+       </list>
+     </option>
++    <option name="PUSH_AUTO_UPDATE" value="true" />
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+@@ -42,7 +36,20 @@
+     &quot;assignee&quot;: &quot;anantsoftcomputin&quot;
+   }
+ }</component>
++  <component name="GithubProjectSettings">
++    <option name="branchProtectionPatterns">
++      <list>
++        <option value="Ramesh" />
++      </list>
++    </option>
++  </component>
+   <component name="GithubPullRequestsUISettings">
++    <option name="recentNewPullRequestHead">
++      <RepoCoordinatesHolder>
++        <option name="owner" value="KAMASDM" />
++        <option name="repository" value="espicrm" />
++      </RepoCoordinatesHolder>
++    </option>
+     <option name="selectedUrlAndAccountId">
+       <UrlAndAccount>
+         <option name="accountId" value="517b0776-af51-4339-a2c8-8c89b3b254a5" />
+@@ -71,7 +78,7 @@
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "git-widget-placeholder": "Merging JigarNew",
++    "git-widget-placeholder": "JigarNew",
+     "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
+   }
+ }]]></component>
+@@ -147,7 +154,31 @@
+       <option name="project" value="LOCAL" />
+       <updated>1711573052495</updated>
+     </task>
+-    <option name="localTasksCounter" value="8" />
++    <task id="LOCAL-00008" summary="Merge pull request #7 from KAMASDM/JigarNew&#10;&#10;Chained foreign key implementation">
++      <option name="closed" value="true" />
++      <created>1712215223025</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1712215223025</updated>
++    </task>
++    <task id="LOCAL-00009" summary="Merge pull request #7 from KAMASDM/JigarNew&#10;&#10;Chained foreign key implementation">
++      <option name="closed" value="true" />
++      <created>1712215271883</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1712215271883</updated>
++    </task>
++    <task id="LOCAL-00010" summary="Merge pull request #7 from KAMASDM/JigarNew&#10;&#10;Chained foreign key implementation">
++      <option name="closed" value="true" />
++      <created>1712215285788</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1712215285788</updated>
++    </task>
++    <option name="localTasksCounter" value="11" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -168,6 +199,7 @@
+     <MESSAGE value="new update" />
+     <MESSAGE value="Second Major Push with list displays, filters, Fieldsets and other functionalities." />
+     <MESSAGE value="Chained foreign key implementation" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Chained foreign key implementation" />
++    <MESSAGE value="Merge pull request #7 from KAMASDM/JigarNew&#10;&#10;Chained foreign key implementation" />
++    <option name="LAST_COMMIT_MESSAGE" value="Merge pull request #7 from KAMASDM/JigarNew&#10;&#10;Chained foreign key implementation" />
+   </component>
+ </project>
+\ No newline at end of file
