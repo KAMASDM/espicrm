@@ -26,6 +26,7 @@ from Application.views import ApplicationViewSet
 from Accounts.views import PaymentViewSet
 
 from Master.views import (
+    CountryInterestedViewSet,
     CountryViewSet, CourseLevelsViewSet, AvailableServicesViewSet,
     CurrentEducationViewSet, IntakeViewSet, DocumentsRequiredViewSet,
     CourseRequirementsViewSet, EnquiryStatusViewSet, AssessmentStatusViewSet,
@@ -39,6 +40,7 @@ from Master.views import (
 )
 
 router = routers.DefaultRouter()
+router.register(r'countriesIntersted', CountryInterestedViewSet)
 router.register(r'countries', CountryViewSet)
 router.register(r'course-levels', CourseLevelsViewSet)
 router.register(r'available-services', AvailableServicesViewSet)
