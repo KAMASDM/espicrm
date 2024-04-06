@@ -1,10 +1,12 @@
-from django.db import models
-from smart_selects.db_fields import ChainedForeignKey
-# Create your models here.
-from Master.models import course_levels, intake, current_education, enquiry_status, Course, university,Available_Services,Enquiry_Source \
-    ,CountryInterested
 from django.contrib.auth import get_user_model
+from django.db import models
 from django_countries.fields import CountryField
+from smart_selects.db_fields import ChainedForeignKey
+
+# Create your models here.
+from Master.models import (Available_Services, CountryInterested, Course,
+                           Enquiry_Source, course_levels, current_education,
+                           enquiry_status, intake, university)
 
 
 # Create your models here.
@@ -54,7 +56,7 @@ class enquiry(models.Model):
 
 
     # For Counsellor
-    assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default="")
+    assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     enquiry_status = models.ForeignKey(enquiry_status, on_delete=models.CASCADE)
     notes = models.TextField()
 
