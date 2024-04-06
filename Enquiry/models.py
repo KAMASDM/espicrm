@@ -59,6 +59,7 @@ class enquiry(models.Model):
     assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     enquiry_status = models.ForeignKey(enquiry_status, on_delete=models.CASCADE)
     notes = models.TextField()
+    created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='+')
 
     def __str__(self):
         return (f"{self.student_First_Name} - {self.country_interested} - {self.level_applying_for} "

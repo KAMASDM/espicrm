@@ -1,11 +1,12 @@
+from typing import Any
+
+from django.conf import settings
 from django.contrib import admin
+from django.core.mail import EmailMessage, send_mail
 from django.db import models
+from import_export.admin import ImportExportMixin
 
 from .models import enquiry, enquiry_status
-from import_export.admin import ImportExportMixin
-from django.core.mail import send_mail
-from django.conf import settings
-from django.core.mail import EmailMessage
 
 # Register your models here.
 
@@ -37,7 +38,8 @@ class EnquiryList(ImportExportMixin,admin.ModelAdmin):
 
     list_filter = (
         'student_First_Name', 'student_phone', 'student_email', 'current_education',
-        'university_interested', 'course_interested', 'assigned_users', 'enquiry_status','Source_Enquiry')
+        'university_interested', 'course_interested', 'assigned_users', 'enquiry_status','Source_Enquiry',
+        'created_by')
 
     list_display_links = ('student_First_Name',)
     list_per_page = 10
@@ -68,77 +70,22 @@ class EnquiryList(ImportExportMixin,admin.ModelAdmin):
         return obj.Interested_Services.aggregate(total=models.Sum('Price'))['total'] or 0
 
     total_price.short_description = "Total Price"
-
-    # def save_model(self, request, obj, form, change):
-    #     super().save_model(request, obj, form, change)
-    #
-    #     admin_subject = "Enquiry Message"
-    #     admin_message = (
-    #         f"A new enquiry has been submitted:\n"
-    #         f"Name: {obj.student_First_Name} {obj.student_Last_Name}\n"
-    #         f"Email: {obj.student_email}\n"
-    #         f"Passport: {obj.student_passport}\n"
-    #         f"Source Enquiry: {obj.Source_Enquiry}\n"
-    #         f"Phone: {obj.student_phone}\n"
-    #         f"Alternate Phone: {obj.alternate_phone}\n"
-    #         f"Address: {obj.student_address}\n"
-    #         f"Country: {obj.student_country}\n"
-    #         f"State: {obj.student_state}\n"
-    #         f"City: {obj.student_city}\n"
-    #         f"ZIP: {obj.student_zip}\n"
-    #         f"Education: {obj.current_education}\n"
-    #         f"Country Interested: {obj.country_interested}\n"
-    #         f"University Interested: {obj.university_interested}\n"
-    #         f"Course Interested: {obj.course_interested}\n"
-    #         f"Level Applying For: {obj.level_applying_for}\n"
-    #         f"Intake Interested: {obj.intake_interested}\n"
-    #         f"Services Interested: {', '.join([str(service) for service in obj.Interested_Services.all()])}\n"
-    #         f"Assigned Users: {obj.assigned_users}\n"
-    #         f"Enquiry Status: {obj.enquiry_status}\n"
-    #         f"Notes: {obj.notes}\n"
-    #         f"\nView the details in the admin panel."
-    #     )
-    #     admin_email = settings.ADMIN_EMAIL
-    #     admin_email_message = EmailMessage(admin_subject, admin_message, settings.DEFAULT_FROM_EMAIL, [admin_email])
-    #     admin_email_message.send()
-    #
-    #     student_subject = "Thank You for Your Enquiry"
-    #     student_message = (
-    #         f"Thank you for your enquiry. We will get back to you shortly.\n"
-    #         f"\nYour enquiry details:\n"
-    #         f"Name: {obj.student_First_Name} {obj.student_Last_Name}\n"
-    #         f"Email: {obj.student_email}\n"
-    #         f"Passport: {obj.student_passport}\n"
-    #         f"Source Enquiry: {obj.Source_Enquiry}\n"
-    #         f"Phone: {obj.student_phone}\n"
-    #         f"Alternate Phone: {obj.alternate_phone}\n"
-    #         f"Address: {obj.student_address}\n"
-    #         f"Country: {obj.student_country}\n"
-    #         f"State: {obj.student_state}\n"
-    #         f"City: {obj.student_city}\n"
-    #         f"ZIP: {obj.student_zip}\n"
-    #         f"Education: {obj.current_education}\n"
-    #         f"Country Interested: {obj.country_interested}\n"
-    #         f"University Interested: {obj.university_interested}\n"
-    #         f"Course Interested: {obj.course_interested}\n"
-    #         f"Level Applying For: {obj.level_applying_for}\n"
-    #         f"Intake Interested: {obj.intake_interested}\n"
-    #         f"Services Interested: {', '.join([str(service) for service in obj.Interested_Services.all()])}\n"
-    #         f"Assigned Users: {obj.assigned_users}\n"
-    #         f"Enquiry Status: {obj.enquiry_status}\n"
-    #         f"Notes: {obj.notes}\n"
-    #     )
-    #     student_email = obj.student_email
-    #     student_email_message = EmailMessage(student_subject, student_message, settings.DEFAULT_FROM_EMAIL, [student_email])
-    #     student_email_message.send()
-    #
-    # def save_email(self, request, obj):
-    #     super().save_email(self, request, obj)
-
         
+    
 admin.site.register(enquiry, EnquiryList)
-# from django.contrib import admin
-# from admin_charts.models import Chart
 
-# # Register your models here.
-# admin.site.register(Chart)
+from django.utils.translation import gettext_lazy as _
+
+# class BranchListFilter(admin.SimpleListFilter):
+#     title = _('Branch wise Filter')
+#     parameter_name = "branch"
+    
+#     def lookups(self, request: Any, model_admin: Any) -> list[tuple[Any, str]]:
+#         return [
+#             ('superuser',_('Superuser')),
+#             ('staffuser',_('Non Super User'),)
+#         ]
+    
+#     def queryset(self, request: Any, queryset: models.QuerySet[Any]) -> models.QuerySet[Any] | None:
+#         if self.value() == 'superuser':
+#             return enquiry.objects.filter()

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'import_export',
     'rest_framework',
     'smart_selects',
+    'user',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -343,3 +344,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #
 # DEFAULT_FROM_EMAIL = 'noreply.studystreak@gmail.com'
 # ADMIN_EMAIL = 'mehulasc@gmail.com'
+
+AUTH_USER_MODEL = 'user.CustomUser'
