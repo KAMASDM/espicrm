@@ -11,4 +11,4 @@ class CustomUserAdmin(UserAdmin):
     def save_model(self, request: Any, obj: Any, form: Any, change: Any) -> None:
         obj.created_by = request.user
         return super().save_model(request, obj, form, change)
-admin.site.register(CustomUser, UserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)

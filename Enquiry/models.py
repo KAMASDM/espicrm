@@ -39,7 +39,6 @@ class enquiry(models.Model):
         show_all=False,
         auto_choose=True,
         sort=True,
-        blank=True,
     )
     course_interested = ChainedForeignKey(
         Course,
@@ -49,6 +48,7 @@ class enquiry(models.Model):
         auto_choose=True,
         sort=True,
         blank=True,
+        null=True
     )
     level_applying_for = models.ForeignKey(course_levels, on_delete=models.CASCADE)
     intake_interested = models.ForeignKey(intake, on_delete=models.CASCADE)

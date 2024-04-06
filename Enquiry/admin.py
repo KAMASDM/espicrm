@@ -1,15 +1,38 @@
+
 from typing import Any
 
-from django.conf import settings
 from django.contrib import admin
-from django.core.mail import EmailMessage, send_mail
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from django.db import models
+from django.db.models import Q
+from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportMixin
 
 from .models import enquiry, enquiry_status
 
 # Register your models here.
 
+
+class BranchListFilter(admin.SimpleListFilter):
+    title = _('Branch wise Filter')
+    parameter_name = "branch"
+    
+    def lookups(self, request: Any, model_admin: Any) -> list[tuple[Any, str]]:
+        customUser = get_user_model()
+        branch = Group.objects.get(name='Branch')
+        branch_name = customUser.objects.filter(groups = branch)
+        
+        __branch_list = list(branch_name.values_list('username',flat=True))
+        branch_list = [ (i,i) for i in __branch_list]
+        return branch_list
+    
+    def queryset(self, request: Any, queryset: models.QuerySet[Any]) -> models.QuerySet[Any] | None:
+        if self.value():
+            branch= get_user_model().objects.get(username=self.value())
+            return enquiry.objects.filter(
+                Q(created_by__created_by=branch)|
+                Q(created_by=branch))
 
 
 
@@ -33,13 +56,13 @@ class EnquiryList(ImportExportMixin,admin.ModelAdmin):
         'student_First_Name', 'student_Last_Name', 'student_phone', 'student_email', 'country_interested',
         'university_interested','Interested_service',
         'course_interested', 'level_applying_for', 'intake_interested',
-        'assigned_users', 'enquiry_status','notes', 'total_price','Source_Enquiry')
+        'assigned_users', 'enquiry_status','notes', 'total_price','Source_Enquiry','created_by')
 
 
     list_filter = (
         'student_First_Name', 'student_phone', 'student_email', 'current_education',
         'university_interested', 'course_interested', 'assigned_users', 'enquiry_status','Source_Enquiry',
-        'created_by')
+        'created_by',BranchListFilter)
 
     list_display_links = ('student_First_Name',)
     list_per_page = 10
@@ -70,22 +93,10 @@ class EnquiryList(ImportExportMixin,admin.ModelAdmin):
         return obj.Interested_Services.aggregate(total=models.Sum('Price'))['total'] or 0
 
     total_price.short_description = "Total Price"
-        
+    
+    def save_model(self, request, obj, form, change) -> None:
+        obj.created_by = request.user
+        return super().save_model(request, obj, form, change)
     
 admin.site.register(enquiry, EnquiryList)
 
-from django.utils.translation import gettext_lazy as _
-
-# class BranchListFilter(admin.SimpleListFilter):
-#     title = _('Branch wise Filter')
-#     parameter_name = "branch"
-    
-#     def lookups(self, request: Any, model_admin: Any) -> list[tuple[Any, str]]:
-#         return [
-#             ('superuser',_('Superuser')),
-#             ('staffuser',_('Non Super User'),)
-#         ]
-    
-#     def queryset(self, request: Any, queryset: models.QuerySet[Any]) -> models.QuerySet[Any] | None:
-#         if self.value() == 'superuser':
-#             return enquiry.objects.filter()
