@@ -51,8 +51,12 @@ class DetailEnquiryAdmin(admin.ModelAdmin):
 
         ('Enquiry Status', {
             'fields': ('Enquiry_Status',),
+            }),
+        ('Followup Status', {
+            'fields': ('followup',),
+        })
 
-        }),
+        
     )
 
 

@@ -1,6 +1,6 @@
 from django.db import models
 from Assessment.models import assessment
-from Master.models import application_status
+from Master.models import application_status,Followup
 
 
 
@@ -20,6 +20,7 @@ class Application(models.Model):
     bachelor_marksheet = models.FileField(upload_to='bachelor_marksheet', blank=True,null=True)
     master_marksheet = models.FileField(upload_to='master_marksheet', blank=True,null=True)
     other_documents = models.FileField(upload_to='other_documents', blank=True,null=True)
+    followup = models.ForeignKey(Followup, on_delete=models.SET_NULL, null=True, blank=True)
     application_status = models.ForeignKey(application_status, max_length=100, blank=True, on_delete=models.CASCADE,null=True)
 
     def __str__(self):
