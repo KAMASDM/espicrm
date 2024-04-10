@@ -273,6 +273,39 @@ class Payment_Mode(models.Model):
     Mode = models.CharField(max_length=100)
     def __str__(self):
         return self.Mode
+    
+    
+    
+# from django.contrib.auth.models import User
+
+class Followup(models.Model):
+    FREQUENCY_CHOICES = [
+        (1, '1 day'),
+        (2, '2 days'),
+        (3, '3 days'),
+    ]
+
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Completed', 'Completed'),
+        ('Cancelled', 'Cancelled'),
+    ]
+
+    model_choices = [
+        ('Enquiry', 'Enquiry'),
+        ('Application', 'Application'),
+        ('Assessment', 'Assessment'),
+        ('Payment', 'Payment'),
+    ]
+
+    model = models.CharField(max_length=100, choices=model_choices)
+    frequency = models.IntegerField(choices=FREQUENCY_CHOICES)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    reminder = models.BooleanField(default=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Pending')
+
+    def __str__(self):
+        return f"{self.get_model_display()} Followup for {self.user.username}"
 
 
 #add a field to class Rejection_Reason which is a file field to upload the refusal letter

@@ -47,7 +47,7 @@ class EnquiryList(ImportExportMixin,admin.ModelAdmin):
         ("Enquiry Info", {"fields": (
             "country_interested", "university_interested","level_applying_for", "course_interested",
             "intake_interested", "Interested_Services")}),
-        ("For Counsellor", {"fields": ("assigned_users", "enquiry_status", "notes")}),
+        ("For Counsellor", {"fields": ("assigned_users","followup", "enquiry_status", "notes")}),
     )
     jazzmin_section_order = ("Student Info", "Contact Info", "Education Info", "Enquiry Info", "For Counsellor")
 
@@ -71,7 +71,7 @@ class EnquiryList(ImportExportMixin,admin.ModelAdmin):
                      'country_interested',
                      'university_interested',
                      'course_interested', 'level_applying_for', 'intake_interested',
-                     'assigned_users', 'enquiry_status',)
+                     'assigned_users','followup','enquiry_status',)
 
 
 

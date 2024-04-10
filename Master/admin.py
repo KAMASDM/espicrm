@@ -6,7 +6,7 @@ from .models import country, course_levels, intake, current_education, documents
      Rejection_Reason
 from Master.models import twelfth_std_percentage_requirement, bachelor_requirement, masters_requirement, tenth_std_percentage_requirement, \
     ielts_Exam, PTE_Exam, Toefl_Exam, Duolingo_Exam, Gre_Exam, Gmat_Exam,Available_Services,Detail_Enquiry_Status,Enquiry_Source,Payment_Type, \
-    Payment_Status, Payment_Mode, CountryInterested
+    Payment_Status, Payment_Mode, CountryInterested,Followup
 
 
 from import_export.admin import ImportExportMixin
@@ -73,7 +73,7 @@ class UniversityListAdmin(ImportExportMixin, admin.ModelAdmin):
                        )
         }),
          ('Notes', {
-            'fields': ('Remark',)
+            'fields': ('Followup','Remark',)
         }),
 
 
@@ -118,6 +118,7 @@ admin.site.register(Payment_Type)
 admin.site.register(Payment_Status)
 admin.site.register(Payment_Mode)
 admin.site.register(CountryInterested)
+admin.site.register(Followup)
 
 
 

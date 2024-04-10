@@ -20,7 +20,7 @@ class AssessmentAdmin(admin.ModelAdmin):
             'fields': ('university', 'level_applying_for', 'course_interested', 'intake_interested', 'specialisation', 'duration', 'application_fee', 'tution_fee', 'fee_currency', 'course_link')
         }),
         ('Additional Information', {
-            'fields': ('notes',)
+            'fields': ('followup','notes',)
         }),
     )
 
