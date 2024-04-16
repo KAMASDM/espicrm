@@ -73,7 +73,7 @@ class UniversityListAdmin(ImportExportMixin, admin.ModelAdmin):
                        )
         }),
          ('Notes', {
-            'fields': ('Followup','Remark',)
+            'fields': ('Remark',)
         }),
 
 

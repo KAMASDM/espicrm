@@ -2,12 +2,13 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django_countries.fields import CountryField
 from smart_selects.db_fields import ChainedForeignKey
-
+from django.core.mail import EmailMessage
+from django.conf import settings
 # Create your models here.
 from Master.models import (Available_Services, CountryInterested, Course,
                            Enquiry_Source, course_levels, current_education,
                            enquiry_status, intake, university,Followup)
-
+import requests
 
 # Create your models here.
 class enquiry(models.Model):
@@ -18,8 +19,8 @@ class enquiry(models.Model):
     Source_Enquiry = models.ForeignKey(Enquiry_Source, on_delete=models.CASCADE,blank=True, default='Website')
 
     # Contact Info
-    student_phone = models.CharField(max_length=10)
-    alternate_phone = models.CharField(max_length=10)
+    student_phone = models.CharField(max_length=100)
+    alternate_phone = models.CharField(max_length=100)
     student_email = models.EmailField()
     student_address = models.TextField()
     student_country = CountryField(blank_label="(select country)", default="IN")
@@ -65,5 +66,74 @@ class enquiry(models.Model):
     def __str__(self):
         return (f"{self.student_First_Name} - {self.country_interested} - {self.level_applying_for} "
                 f"- {self.intake_interested}")
+    def save(self, *args, **kwargs):
+            # Call the original save method
+        super().save(*args, **kwargs)
+    
+        # Send email to admin
+        admin_subject = "New Detail Enquiry Submitted"
+        admin_message = (
+            f"A new Detail enquiry has been submitted with ID: {self.id}."
+        )
+        admin_email = settings.ADMIN_EMAIL
+        admin_email_message = EmailMessage(admin_subject, admin_message, settings.DEFAULT_FROM_EMAIL, [admin_email])
+        admin_email_message.send()
+    
+        # Send email to student
+        student_subject = "Thank You for Your Detail Enquiry"
+        student_message = (
+            f"Thank you for your  Enquiry. We will get back to you shortly."
+    
+    
+        )
+        for field in self._meta.fields:
+                # Get the field name and its value for the current instance
+            field_name = field.name
+            field_value = getattr(self, field_name)
+            # Append field name and value to the email message
+            student_message += f"{field_name.capitalize()}: {field_value}\n"
+        student_email = self.student_email
+        student_email_message = EmailMessage(student_subject, student_message, settings.DEFAULT_FROM_EMAIL, [student_email])
+        student_email_message.send()
+        
+    def save(self, *args, **kwargs):
+        # Call the original save method
+        super().save(*args, **kwargs)
+        
+        # Send WhatsApp message
+        api_key = "634b7217-d8f7-11ed-a7c7-9606c7e32d76"
+        sender_whatsapp_number = "917211117272"
+        recipient_whatsapp_number = self.student_phone  # Assuming student_phone contains the WhatsApp number
+        whatsapp_message = "Hello, your enquiry has been submitted successfully. We will get back to you soon."
+        
+        url = "https://wapi.flexiwaba.com/v1/wamessage/sendMessage"
+        headers = {
+            "Content-Type": "application/json",
+            "apiKey": api_key
+        }
+        payload = {
+            "from": sender_whatsapp_number,
+            "to": recipient_whatsapp_number,
+            "type": "template",
+            "message": {
+        "templateid": "195283",
+        "url": "https://whatsappdata.s3.ap-south-1.amazonaws.com/userMedia/831c2f88a604a07ca94314b56a4921b8/testing_image.jpeg",
+        "placeholders": ["Ramesh", "Visa Service"],
+        "buttons": [{
+            "index": 0,
+            "type": "visit_website",
+            "placeholder": "visitors-visa"
+        }]
+    }
+        }
+
+        response = requests.post(url, json=payload, headers=headers)
+        if response.status_code == 200:
+            print("WhatsApp message sent successfully")
+        else:
+            print("Failed to send WhatsApp message")
+        
+    
+        
 
 
