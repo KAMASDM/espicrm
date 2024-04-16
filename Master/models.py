@@ -308,6 +308,6 @@ class Followup(models.Model):
         return f"{self.get_model_display()} Followup for {self.user.username}"
 
 
-#add a field to class Rejection_Reason which is a file field to upload the refusal letter
+
 
 

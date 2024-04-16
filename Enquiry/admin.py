@@ -14,25 +14,25 @@ from .models import enquiry, enquiry_status
 # Register your models here.
 
 
-class BranchListFilter(admin.SimpleListFilter):
-    title = _('Branch wise Filter')
-    parameter_name = "branch"
+# class BranchListFilter(admin.SimpleListFilter):
+#     title = _('Branch wise Filter')
+#     parameter_name = "branch"
     
-    def lookups(self, request: Any, model_admin: Any) -> list[tuple[Any, str]]:
-        customUser = get_user_model()
-        branch = Group.objects.get(name='Branch')
-        branch_name = customUser.objects.filter(groups = branch)
+#     def lookups(self, request: Any, model_admin: Any) -> list[tuple[Any, str]]:
+#         customUser = get_user_model()
+#         branch = Group.objects.get(name='Branch')
+#         branch_name = customUser.objects.filter(groups = branch)
         
-        __branch_list = list(branch_name.values_list('username',flat=True))
-        branch_list = [ (i,i) for i in __branch_list]
-        return branch_list
+#         __branch_list = list(branch_name.values_list('username',flat=True))
+#         branch_list = [ (i,i) for i in __branch_list]
+#         return branch_list
     
-    def queryset(self, request: Any, queryset: models.QuerySet[Any]) -> models.QuerySet[Any] | None:
-        if self.value():
-            branch= get_user_model().objects.get(username=self.value())
-            return enquiry.objects.filter(
-                Q(created_by__created_by=branch)|
-                Q(created_by=branch))
+#     def queryset(self, request: Any, queryset: models.QuerySet[Any]) -> models.QuerySet[Any] | None:
+#         if self.value():
+#             branch= get_user_model().objects.get(username=self.value())
+#             return enquiry.objects.filter(
+#                 Q(created_by__created_by=branch)|
+#                 Q(created_by=branch))
 
 
 
@@ -62,7 +62,7 @@ class EnquiryList(ImportExportMixin,admin.ModelAdmin):
     list_filter = (
         'student_First_Name', 'student_phone', 'student_email', 'current_education',
         'university_interested', 'course_interested', 'assigned_users', 'enquiry_status','Source_Enquiry',
-        'created_by',BranchListFilter)
+        'created_by')
 
     list_display_links = ('student_First_Name',)
     list_per_page = 10
@@ -71,7 +71,7 @@ class EnquiryList(ImportExportMixin,admin.ModelAdmin):
                      'country_interested',
                      'university_interested',
                      'course_interested', 'level_applying_for', 'intake_interested',
-                     'assigned_users','followup','enquiry_status',)
+                     'assigned_users','enquiry_status',)
 
 
 
