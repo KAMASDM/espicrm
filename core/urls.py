@@ -77,14 +77,12 @@ router.register(r'application',ApplicationViewSet )
 router.register(r'payments', PaymentViewSet)
 # from smart_selects.views import ChainedSelectView
 
-from Enquiry.views import EnquiryCreateView
 
 urlpatterns = [
     # path("graphql/", GraphQLView.as_view(graphiql=True, schema=schema)),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('chaining/', include('smart_selects.urls')),
-    path('api/enquiry_create/', EnquiryCreateView.as_view()),
 
     # path('admin_charts/', include('admin_charts.urls')),
     ]
