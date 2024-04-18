@@ -2,10 +2,11 @@ from django.db import models
 
 # Create your models here.
 from Enquiry.models import enquiry
-from Master.models import (Edu_Level, Work_Experience, Toefl_Exam, ielts_Exam, PTE_Exam,
+from Master.models import (Edu_Level, Work_Experience, Toefl_Exam, Ielts_Exam, PTE_Exam,
                            Duolingo_Exam, Gre_Exam, Gmat_Exam, Rejection_Reason, Available_Services,Followup,Detail_Enquiry_Status)
 from django.core.mail import EmailMessage
 from django.conf import settings
+import requests
 class Detail_Enquiry(models.Model):
 
     Current_Enquiry = models.ForeignKey(enquiry, on_delete=models.CASCADE)
@@ -15,7 +16,7 @@ class Detail_Enquiry(models.Model):
     Graduation_Education_Details = models.ForeignKey(Edu_Level, on_delete=models.CASCADE, blank=True, null=True, related_name='Graduation_Education_Details')
     Work_Experience = models.ForeignKey(Work_Experience,max_length=100, on_delete=models.CASCADE, blank=True, null=True)
     Toefl_Exam = models.ForeignKey(Toefl_Exam, on_delete=models.CASCADE, blank=True, null=True)
-    ielts_Exam = models.ForeignKey(ielts_Exam, on_delete=models.CASCADE, blank=True, null=True)
+    ielts_Exam = models.ForeignKey(Ielts_Exam, on_delete=models.CASCADE, blank=True, null=True)
     PTE_Exam = models.ForeignKey(PTE_Exam, on_delete=models.CASCADE, blank=True, null=True)
     Duolingo_Exam = models.ForeignKey(Duolingo_Exam, on_delete=models.CASCADE, blank=True, null=True)
     Gre_Exam = models.ForeignKey(Gre_Exam, on_delete=models.CASCADE, blank=True, null=True)
@@ -74,6 +75,43 @@ class Detail_Enquiry(models.Model):
         student_email = self.Current_Enquiry.student_email
         student_email_message = EmailMessage(student_subject, student_message, settings.DEFAULT_FROM_EMAIL, [student_email])
         student_email_message.send()
+    
+    def save(self, *args, **kwargs):
+        # Call the original save method
+        super().save(*args, **kwargs)
+        
+        # Send WhatsApp message
+        api_key = "634b7217-d8f7-11ed-a7c7-9606c7e32d76"
+        sender_whatsapp_number = "917211117272"
+        recipient_whatsapp_number = self.Current_Enquiry.student_phone  # Assuming student_phone contains the WhatsApp number
+        whatsapp_message = "Hello, your enquiry has been submitted successfully. We will get back to you soon."
+        
+        url = "https://wapi.flexiwaba.com/v1/wamessage/sendMessage"
+        headers = {
+            "Content-Type": "application/json",
+            "apiKey": api_key
+        }
+        payload = {
+            "from": sender_whatsapp_number,
+            "to": recipient_whatsapp_number,
+            "type": "template",
+            "message": {
+        "templateid": "195283",
+        "url": "https://whatsappdata.s3.ap-south-1.amazonaws.com/userMedia/831c2f88a604a07ca94314b56a4921b8/testing_image.jpeg",
+        "placeholders": ["Ramesh", "Hello, your enquiry has been submitted successfully. We will get back to you soon."],
+        "buttons": [{
+            "index": 0,
+            "type": "visit_website",
+            "placeholder": "visitors-visa"
+        }]
+    }
+        }
+
+        response = requests.post(url, json=payload, headers=headers)
+        if response.status_code == 200:
+            print("WhatsApp message sent successfully")
+        else:
+            print("Failed to send WhatsApp message")
 
 
 

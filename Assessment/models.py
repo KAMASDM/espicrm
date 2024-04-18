@@ -4,9 +4,10 @@ from smart_selects.db_fields import ChainedForeignKey
 # Create your models here.
 from Master.models import course_levels, intake, Course, university,Followup, assessment_status, CountryInterested
 from DetailEnquiry.models import Detail_Enquiry
+from Enquiry.models import enquiry
 from django.contrib.auth import get_user_model
 from django_countries.fields import CountryField
-
+import requests
 from django.core.mail import EmailMessage
 from django.conf import settings
 class assessment(models.Model):
@@ -94,5 +95,43 @@ class assessment(models.Model):
         user_email_message = EmailMessage(user_subject, user_message, settings.DEFAULT_FROM_EMAIL, [assigned_user_email])
         user_email_message.send()
     
+    
+    def save(self, *args, **kwargs):
+            # Call the original save method
+        super().save(*args, **kwargs)
+        
+        # Send WhatsApp message
+        api_key = "634b7217-d8f7-11ed-a7c7-9606c7e32d76"
+        sender_whatsapp_number = "917211117272"
+        recipient_whatsapp_number = self.enquiry.Current_Enquiry.student_phone  # Assuming student_phone contains the WhatsApp number
+        whatsapp_message = "Hello, your Assessment has been submitted successfully. We will get back to you soon."
+        
+        url = "https://wapi.flexiwaba.com/v1/wamessage/sendMessage"
+        headers = {
+            "Content-Type": "application/json",
+            "apiKey": api_key
+        }
+        payload = {
+            "from": sender_whatsapp_number,
+            "to": recipient_whatsapp_number,
+            "type": "template",
+            "message": {
+        "templateid": "195283",
+        "url": "https://whatsappdata.s3.ap-south-1.amazonaws.com/userMedia/831c2f88a604a07ca94314b56a4921b8/testing_image.jpeg",
+        "placeholders": ["Ramesh", "Hello, your Assessment has been submitted successfully. We will get back to you soon."],
+        "buttons": [{
+            "index": 0,
+            "type": "visit_website",
+            "placeholder": "visitors-visa"
+        }]
+    }
+        }
+
+        response = requests.post(url, json=payload, headers=headers)
+        if response.status_code == 200:
+            print("WhatsApp message sent successfully")
+        else:
+            print("Failed to send WhatsApp message")
+
     
 

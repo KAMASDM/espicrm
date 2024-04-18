@@ -3,7 +3,7 @@ from .models import (CountryInterested,
     country, course_levels, Available_Services, current_education,
     intake, documents_required, course_requirements, enquiry_status,
     assessment_status, application_status, university, Course,
-    Edu_Level, Work_Experience, ielts_Exam, Toefl_Exam, PTE_Exam,
+    Edu_Level, Work_Experience, Ielts_Exam, Toefl_Exam, PTE_Exam,
     Duolingo_Exam, Gre_Exam, Gmat_Exam, tenth_std_percentage_requirement,
     twelfth_std_percentage_requirement, bachelor_requirement, masters_requirement,
     Rejection_Reason, Detail_Enquiry_Status, Enquiry_Source,
@@ -85,7 +85,7 @@ class WorkExperienceSerializer(serializers.ModelSerializer):
 
 class IeltsExamSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ielts_Exam
+        model = Ielts_Exam
         fields = '__all__'
 
 class ToeflExamSerializer(serializers.ModelSerializer):

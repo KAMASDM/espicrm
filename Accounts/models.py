@@ -2,7 +2,7 @@ from django.db import models
 from Master.models import Payment_Type, Payment_Status, Payment_Mode,Available_Services
 from DetailEnquiry.models import Detail_Enquiry
 from django.contrib.auth import get_user_model
-
+import requests
 # Create your models here.
 class Payment(models.Model):
     Memo_For = models.ForeignKey(Detail_Enquiry, on_delete=models.CASCADE, blank=True,)
@@ -22,3 +22,42 @@ class Payment(models.Model):
 
     def __str__(self):
         return (f"{self.payment_id}")
+    def save(self, *args, **kwargs):
+            # Call the original save method
+        super().save(*args, **kwargs)
+        
+        # Send WhatsApp message
+        api_key = "634b7217-d8f7-11ed-a7c7-9606c7e32d76"
+        sender_whatsapp_number = "917211117272"
+        recipient_whatsapp_number = self.Memo_For.enquiry.Current_Enquiry.student_phone  # Assuming student_phone contains the WhatsApp number
+        whatsapp_message = "Hello, your Payment has been submitted successfully. We will get back to you soon."
+        
+        url = "https://wapi.flexiwaba.com/v1/wamessage/sendMessage"
+        headers = {
+            "Content-Type": "application/json",
+            "apiKey": api_key
+        }
+        payload = {
+            "from": sender_whatsapp_number,
+            "to": recipient_whatsapp_number,
+            "type": "template",
+            "message": {
+        "templateid": "195283",
+        "url": "https://whatsappdata.s3.ap-south-1.amazonaws.com/userMedia/831c2f88a604a07ca94314b56a4921b8/testing_image.jpeg",
+        "placeholders": ["Ramesh", "Hello, your Payment has been submitted successfully. We will get back to you soon."],
+        "buttons": [{
+            "index": 0,
+            "type": "visit_website",
+            "placeholder": "visitors-visa"
+        }]
+    }
+        }
+
+        response = requests.post(url, json=payload, headers=headers)
+        if response.status_code == 200:
+            print("WhatsApp message sent successfully")
+        else:
+            print("Failed to send WhatsApp message")
+    
+    
+    
