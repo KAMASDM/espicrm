@@ -5,7 +5,7 @@ from .models import country, course_levels, intake, current_education, documents
     enquiry_status, application_status, Course, university, assessment_status, Edu_Level,Work_Experience, \
      Rejection_Reason
 from Master.models import twelfth_std_percentage_requirement, bachelor_requirement, masters_requirement, tenth_std_percentage_requirement, \
-    ielts_Exam, PTE_Exam, Toefl_Exam, Duolingo_Exam, Gre_Exam, Gmat_Exam,Available_Services,Detail_Enquiry_Status,Enquiry_Source,Payment_Type, \
+    Ielts_Exam, PTE_Exam, Toefl_Exam, Duolingo_Exam, Gre_Exam, Gmat_Exam,Available_Services,Detail_Enquiry_Status,Enquiry_Source,Payment_Type, \
     Payment_Status, Payment_Mode, CountryInterested,Followup
 
 
@@ -100,7 +100,7 @@ admin.site.register(university, UniversityListAdmin)
 admin.site.register(assessment_status)
 admin.site.register(Edu_Level)
 admin.site.register(Work_Experience)
-admin.site.register(ielts_Exam)
+admin.site.register(Ielts_Exam)
 admin.site.register(PTE_Exam)
 admin.site.register(Toefl_Exam)
 admin.site.register(Duolingo_Exam)

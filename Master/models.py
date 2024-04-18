@@ -5,7 +5,7 @@ from django_countries.fields import CountryField
 #from Master.models import Toefl_Exam, ielts_Exam, PTE_Exam, Duolingo_Exam, Gre_Exam, Gmat_Exam, bachelor_requirement
 
 
-
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 
@@ -153,63 +153,60 @@ class Work_Experience(models.Model):
     End_Date = models.DateField()
     def __str__(self):
         return self.Company_Name
-class ielts_Exam(models.Model):
-    Listening = models.FloatField(null=True)
-    Reading = models.FloatField(null=True)
-    Writing = models.FloatField(null=True)
-    Speaking = models.FloatField(null=True)
-    Overall = models.FloatField(null=True)
-    def __str__(self):
-        return f"Overall: {self.Overall}"
 
+class Ielts_Exam(models.Model):
+    Listening = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(9)], null=True)
+    Reading = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(9)], null=True)
+    Writing = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(9)], null=True)
+    Speaking = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(9)], null=True)
+    Overall = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(9)], null=True)
+
+    def __str__(self):
+        return f"IELTS Overall: {self.Overall}"
 
 class Toefl_Exam(models.Model):
-    Listening = models.FloatField()
-    Reading = models.FloatField()
-    Writing = models.FloatField()
-    Speaking = models.FloatField()
-    Overall = models.FloatField()
+    Listening = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(30)])
+    Reading = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(30)])
+    Writing = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(30)])
+    Speaking = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(30)])
+    Overall = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(120)])
 
     def __str__(self):
-        return f"Overall: {self.Overall}"
+        return f"Toefl Overall: {self.Overall}"
 
 class PTE_Exam(models.Model):
-    Listening = models.FloatField()
-    Reading = models.FloatField()
-    Writing = models.FloatField()
-    Speaking = models.FloatField()
-    Overall = models.FloatField()
+    Listening = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(90)])
+    Reading = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(90)])
+    Writing = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(90)])
+    Speaking = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(90)])
+    Overall = models.FloatField(validators=[MinValueValidator(10), MaxValueValidator(90)])
 
     def __str__(self):
-        return f"Overall: {self.Overall}"
-
+        return f"PTE Overall: {self.Overall}"
 
 class Duolingo_Exam(models.Model):
-    Overall = models.FloatField()
+    Overall = models.FloatField(validators=[MinValueValidator(10), MaxValueValidator(160)])
 
     def __str__(self):
-        return f"Overall: {self.Overall}"
-
+        return f"Duolingo Overall: {self.Overall}"
 
 class Gre_Exam(models.Model):
-    Verbal = models.FloatField()
-    Quantitative = models.FloatField()
-    Analytical = models.FloatField()
-    overall = models.FloatField()
+    Verbal = models.FloatField(validators=[MinValueValidator(130), MaxValueValidator(170)])
+    Quantitative = models.FloatField(validators=[MinValueValidator(130), MaxValueValidator(170)])
+    Analytical = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(6)])
+    Overall = models.FloatField(validators=[MinValueValidator(260), MaxValueValidator(340)])
 
-    @property
     def __str__(self):
-        return f"Overall: {self.Overall}"
-
+        return f"GRE Overall: {self.Overall}"
 
 class Gmat_Exam(models.Model):
-    Verbal = models.FloatField()
-    Quantitative = models.FloatField()
-    Analytical = models.FloatField()
-    overall = models.FloatField()
+    Verbal = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(60)])
+    Quantitative = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(60)])
+    Analytical = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(6)])
+    Overall = models.FloatField(validators=[MinValueValidator(200), MaxValueValidator(800)])
 
     def __str__(self):
-        return f"Overall: {self.Overall}"
+        return f"GMAT Overall: {self.Overall}"
 
 class tenth_std_percentage_requirement(models.Model):
     percentage = models.FloatField()
