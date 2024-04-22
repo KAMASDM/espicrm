@@ -35,7 +35,7 @@ from Master.views import (
     TenthStdPercentageRequirementViewSet, TwelfthStdPercentageRequirementViewSet,
     BachelorRequirementViewSet, MastersRequirementViewSet, RejectionReasonViewSet,
     DetailEnquiryStatusViewSet, EnquirySourceViewSet, PaymentTypeViewSet,
-    PaymentStatusViewSet, PaymentModeViewSet
+    PaymentStatusViewSet, PaymentModeViewSet,FollowupViewSet
 )
 
 router = routers.DefaultRouter()
@@ -75,6 +75,7 @@ router.register(r'detailsEnquiry',DetailEnquiryViewSet)
 router.register(r'assesment',AssessmentViewSet )
 router.register(r'application',ApplicationViewSet )
 router.register(r'payments', PaymentViewSet)
+router.register(r'followups', FollowupViewSet)
 # from smart_selects.views import ChainedSelectView
 
 
