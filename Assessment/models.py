@@ -2,7 +2,7 @@ from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
 
 # Create your models here.
-from Master.models import course_levels, intake, Course, university,Followup, assessment_status, CountryInterested
+from Master.models import course_levels, intake, Course, university,assessment_status, CountryInterested
 from DetailEnquiry.models import Detail_Enquiry
 from Enquiry.models import enquiry
 from django.contrib.auth import get_user_model
@@ -38,7 +38,7 @@ class assessment(models.Model):
     tution_fee = models.CharField(max_length=100, blank=True, null=True)
     fee_currency = models.CharField(max_length=100, blank=True, null=True)
     course_link = models.CharField(max_length=200,blank=True, null=True)
-    followup = models.ForeignKey(Followup, on_delete=models.SET_NULL, null=True, blank=True)
+    # followup = models.ForeignKey(Followup, on_delete=models.SET_NULL, null=True, blank=True)
     ass_status = models.ForeignKey(assessment_status, blank=True, on_delete=models.CASCADE,null=True)
     notes = models.TextField( blank=True,null=True)
 

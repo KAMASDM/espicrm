@@ -11,7 +11,7 @@ from .models import (
     Duolingo_Exam, Gre_Exam, Gmat_Exam, tenth_std_percentage_requirement,
     twelfth_std_percentage_requirement, bachelor_requirement, masters_requirement,
     Rejection_Reason, Detail_Enquiry_Status, Enquiry_Source,
-    Payment_Type, Payment_Status, Payment_Mode,Followup,
+    Payment_Type, Payment_Status, Payment_Mode
 )
 from .serializers import (
     CountryInterestedSerializer,
@@ -22,7 +22,7 @@ from .serializers import (
     EduLevelSerializer, WorkExperienceSerializer, IeltsExamSerializer,
     ToeflExamSerializer, PTEExamSerializer, DuolingoExamSerializer,
     GreExamSerializer, GmatExamSerializer, TenthStdPercentageRequirementSerializer,
-    TwelfthStdPercentageRequirementSerializer, BachelorRequirementSerializer,FollowupSerializer,
+    TwelfthStdPercentageRequirementSerializer, BachelorRequirementSerializer,
     MastersRequirementSerializer, RejectionReasonSerializer, DetailEnquiryStatusSerializer,
     EnquirySourceSerializer, PaymentTypeSerializer, PaymentStatusSerializer,
     PaymentModeSerializer
@@ -151,6 +151,6 @@ class GmatExamViewSet(viewsets.ModelViewSet):
     serializer_class = GmatExamSerializer
     
 
-class FollowupViewSet(viewsets.ModelViewSet):
-    queryset = Followup.objects.all()
-    serializer_class = FollowupSerializer
+# class FollowupViewSet(viewsets.ModelViewSet):
+#     queryset = Followup.objects.all()
+#     serializer_class = FollowupSerializer

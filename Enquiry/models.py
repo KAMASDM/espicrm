@@ -7,7 +7,7 @@ from django.conf import settings
 # Create your models here.
 from Master.models import (Available_Services, CountryInterested, Course,
                            Enquiry_Source, course_levels, current_education,
-                           enquiry_status, intake, university,Followup)
+                           enquiry_status, intake, university)
 import requests
 
 # Create your models here.
@@ -59,7 +59,7 @@ class enquiry(models.Model):
     # For Counsellor
     assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     enquiry_status = models.ForeignKey(enquiry_status, on_delete=models.CASCADE)
-    followup = models.ForeignKey(Followup, on_delete=models.SET_NULL, null=True, blank=True)
+    # followup = models.ForeignKey(Followup, on_delete=models.SET_NULL, null=True, blank=True)
     notes = models.TextField()
     created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='+')
 
