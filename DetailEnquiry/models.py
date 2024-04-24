@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 from Enquiry.models import enquiry
 from Master.models import (Edu_Level, Work_Experience, Toefl_Exam, Ielts_Exam, PTE_Exam,
-                           Duolingo_Exam, Gre_Exam, Gmat_Exam, Rejection_Reason, Available_Services,Followup,Detail_Enquiry_Status)
+                           Duolingo_Exam, Gre_Exam, Gmat_Exam, Rejection_Reason, Available_Services,Detail_Enquiry_Status)
 from django.core.mail import EmailMessage
 from django.conf import settings
 import requests
@@ -40,7 +40,7 @@ class Detail_Enquiry(models.Model):
     Gre_Result = models.FileField(upload_to='documents/', blank=True)
     Gmat_Result = models.FileField(upload_to='documents/', blank=True)
     Confirmed_Services = models.ManyToManyField(Available_Services, blank=True)
-    followup = models.ForeignKey(Followup, on_delete=models.SET_NULL, null=True, blank=True)
+    # followup = models.ForeignKey(Followup, on_delete=models.SET_NULL, null=True, blank=True)
     Enquiry_Status = models.ForeignKey(Detail_Enquiry_Status, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):

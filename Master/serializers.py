@@ -164,9 +164,9 @@ class PaymentModeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 from rest_framework import serializers
-from .models import Followup
+# from .models import Followup
 
-class FollowupSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Followup
-        fields = '__all__'
+# class FollowupSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Followup
+#         fields = '__all__'
