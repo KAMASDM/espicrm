@@ -1,7 +1,6 @@
 from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
 
-# Create your models here.
 from Master.models import course_levels, intake, Course, university, assessment_status, CountryInterested
 from DetailEnquiry.models import Detail_Enquiry
 from Enquiry.models import enquiry
@@ -132,6 +131,3 @@ class assessment(models.Model):
             print("WhatsApp message sent successfully")
         else:
             print("Failed to send WhatsApp message")
-
-    
-

@@ -9,7 +9,7 @@ from django.conf import settings
 import requests
 class Detail_Enquiry(models.Model):
 
-    Current_Enquiry = models.ForeignKey(enquiry, on_delete=models.CASCADE)
+    Current_Enquiry = models.ForeignKey(enquiry, on_delete=models.CASCADE,blank=True, null=True)
     Current_Education_Details = models.ForeignKey(Edu_Level, on_delete=models.CASCADE, blank=True, null=True)
     Tenth_Education_Details = models.ForeignKey(Edu_Level, on_delete=models.CASCADE, blank=True, null=True, related_name='Tenth_Education_Details')
     Twelveth_Education_Details = models.ForeignKey(Edu_Level, on_delete=models.CASCADE, blank=True, null=True, related_name='Twelveth_Education_Details')
