@@ -1,6 +1,6 @@
 from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
-from Master.models import course_levels, intake, Course, university,assessment_status, CountryInterested
+from Master.models import course_levels, intake, Course, university, assessment_status, CountryInterested
 from DetailEnquiry.models import Detail_Enquiry
 from Enquiry.models import enquiry
 from django.contrib.auth import get_user_model

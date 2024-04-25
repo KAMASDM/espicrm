@@ -242,7 +242,7 @@ class Rejection_Reason(models.Model):
 
 
     def __str__(self):
-        return self.Reason
+        return f"{self.Refusal_Reason}"
 
 class Detail_Enquiry_Status(models.Model):
     Status = models.CharField(max_length=100)
