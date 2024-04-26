@@ -39,7 +39,7 @@ class Detail_Enquiry(models.Model):
     Duolingo_Result = models.FileField(upload_to='documents/', blank=True)
     Gre_Result = models.FileField(upload_to='documents/', blank=True)
     Gmat_Result = models.FileField(upload_to='documents/', blank=True)
-    Confirmed_Services = models.ManyToManyField(Available_Services, blank=True)
+    Confirmed_Services = models.ManyToManyField(Available_Services)
     DetaiEnquiryFollowup = models.ForeignKey(DetailEnquiryFollowupStatus, on_delete=models.SET_NULL, null=True, blank=True)
     Enquiry_Status = models.ForeignKey(Detail_Enquiry_Status, on_delete=models.CASCADE, blank=True, null=True)
 
