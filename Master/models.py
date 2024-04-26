@@ -271,11 +271,9 @@ class Payment_Mode(models.Model):
     def __str__(self):
         return self.Mode
     
-    
-    
-# from django.contrib.auth.models import User
 
-# class Followup(models.Model):
+
+# class Followup_status(models.Model):
 #     FREQUENCY_CHOICES = [
 #         (1, '1 day'),
 #         (2, '2 days'),
@@ -305,6 +303,151 @@ class Payment_Mode(models.Model):
 #         return f"{self.get_model_display()} Followup for {self.user.username}"
 
 
+from django.db import models
+from django.contrib.auth import get_user_model
+
+INTERACTION_CHOICES = [
+        ('call', 'Call'),
+        ('meeting', 'Meeting'),
+        ('email', 'Email'),
+        ('other', 'Other'),
+    ]
+
+FOLLOWUP_METHOD_CHOICES = [
+        ('email', 'Email'),
+        ('phone', 'Phone'),
+        ('sms', 'SMS'),
+        ('other', 'Other'),
+    ]
+
+PRIORITY_CHOICES = [
+        ('high', 'High'),
+        ('medium', 'Medium'),
+        ('low', 'Low'),
+]
+
+STATUS_CHOICES = [
+        ('open', 'Open'),
+        ('pending', 'Pending'),
+        ('completed', 'Completed'),
+]
+
+REMINDER_FREQUENCY_CHOICES = [
+        ('one-time', 'One-time'),
+        ('daily', 'Daily'),
+        ('weekly', 'Weekly'),
+        # Add more choices as needed
+    ]
+
+    
+
+class EnquiryFollowupStatus(models.Model):
+    last_contact_date = models.DateField(null=True, blank=True)
+    last_interaction_summary = models.TextField(blank=True)
+    last_interaction_type = models.CharField(max_length=20, choices=INTERACTION_CHOICES, blank=True)
+
+    next_followup_date = models.DateField(null=True, blank=True)
+    next_followup_purpose = models.TextField(blank=True)
+    next_followup_method = models.CharField(max_length=20, choices=FOLLOWUP_METHOD_CHOICES, blank=True)
+
+    reminder_date_time = models.DateTimeField(null=True, blank=True)
+    reminder_frequency = models.CharField(max_length=20, choices=REMINDER_FREQUENCY_CHOICES, blank=True)
+    reminder_notification_method = models.CharField(max_length=20, choices=FOLLOWUP_METHOD_CHOICES, blank=True)
+
+    priority_level = models.CharField(max_length=20, choices=PRIORITY_CHOICES, blank=True)
+    urgency = models.CharField(max_length=20, blank=True)
+
+    notes = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='open')
+    outcome = models.TextField(blank=True)
+
+    attachment_enquiryFollowup = models.FileField(upload_to='attachmentsForEnquiryFollowup/', blank=True)
+
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.last_contact_date} Followup Status"
 
 
 
+class DetailEnquiryFollowupStatus(models.Model):
+    last_contact_date = models.DateField(null=True, blank=True)
+    last_interaction_summary = models.TextField(blank=True)
+    last_interaction_type = models.CharField(max_length=20, choices=INTERACTION_CHOICES, blank=True)
+
+    next_followup_date = models.DateField(null=True, blank=True)
+    next_followup_purpose = models.TextField(blank=True)
+    next_followup_method = models.CharField(max_length=20, choices=FOLLOWUP_METHOD_CHOICES, blank=True)
+
+    reminder_date_time = models.DateTimeField(null=True, blank=True)
+    reminder_frequency = models.CharField(max_length=20, choices=REMINDER_FREQUENCY_CHOICES, blank=True)
+    reminder_notification_method = models.CharField(max_length=20, choices=FOLLOWUP_METHOD_CHOICES, blank=True)
+
+    priority_level = models.CharField(max_length=20, choices=PRIORITY_CHOICES, blank=True)
+    urgency = models.CharField(max_length=20, blank=True)
+
+    notes = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='open')
+    outcome = models.TextField(blank=True)
+
+    attachment_DetailEnquiryFollowup = models.FileField(upload_to='attachmentsForDetailEnquiryFollowup/', blank=True)
+
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.last_contact_date} Followup Status"
+
+
+class AssesmentFollowupStatus(models.Model):
+    last_contact_date = models.DateField(null=True, blank=True)
+    last_interaction_summary = models.TextField(blank=True)
+    last_interaction_type = models.CharField(max_length=20, choices=INTERACTION_CHOICES, blank=True)
+
+    next_followup_date = models.DateField(null=True, blank=True)
+    next_followup_purpose = models.TextField(blank=True)
+    next_followup_method = models.CharField(max_length=20, choices=FOLLOWUP_METHOD_CHOICES, blank=True)
+
+    reminder_date_time = models.DateTimeField(null=True, blank=True)
+    reminder_frequency = models.CharField(max_length=20, choices=REMINDER_FREQUENCY_CHOICES, blank=True)
+    reminder_notification_method = models.CharField(max_length=20, choices=FOLLOWUP_METHOD_CHOICES, blank=True)
+
+    priority_level = models.CharField(max_length=20, choices=PRIORITY_CHOICES, blank=True)
+    urgency = models.CharField(max_length=20, blank=True)
+
+    notes = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='open')
+    outcome = models.TextField(blank=True)
+
+    attachment_AssesmentFollowup = models.FileField(upload_to='attachmentsForAssesmentFollowup/', blank=True)
+
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.last_contact_date} Followup Status"
+
+class PaymentFollowupStatus(models.Model):
+    last_contact_date = models.DateField(null=True, blank=True)
+    last_interaction_summary = models.TextField(blank=True)
+    last_interaction_type = models.CharField(max_length=20, choices=INTERACTION_CHOICES, blank=True)
+
+    next_followup_date = models.DateField(null=True, blank=True)
+    next_followup_purpose = models.TextField(blank=True)
+    next_followup_method = models.CharField(max_length=20, choices=FOLLOWUP_METHOD_CHOICES, blank=True)
+
+    reminder_date_time = models.DateTimeField(null=True, blank=True)
+    reminder_frequency = models.CharField(max_length=20, choices=REMINDER_FREQUENCY_CHOICES, blank=True)
+    reminder_notification_method = models.CharField(max_length=20, choices=FOLLOWUP_METHOD_CHOICES, blank=True)
+
+    priority_level = models.CharField(max_length=20, choices=PRIORITY_CHOICES, blank=True)
+    urgency = models.CharField(max_length=20, blank=True)
+
+    notes = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='open')
+    outcome = models.TextField(blank=True)
+
+    attachment_PaymentFollowup = models.FileField(upload_to='attachmentsForPaymentFollowup/', blank=True)
+
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.last_contact_date} Followup Status"

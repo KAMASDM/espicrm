@@ -7,7 +7,7 @@ from django.conf import settings
 # Create your models here.
 from Master.models import (Available_Services, CountryInterested, Course,
                            Enquiry_Source, course_levels, current_education,
-                           enquiry_status, intake, university)
+                           enquiry_status, intake, university,EnquiryFollowupStatus)
 import requests
 
 # Create your models here.
@@ -59,15 +59,16 @@ class enquiry(models.Model):
     # For Counsellor
     assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     enquiry_status = models.ForeignKey(enquiry_status, on_delete=models.CASCADE)
-    # followup = models.ForeignKey(Followup, on_delete=models.SET_NULL, null=True, blank=True)
+    EnquiryFollowup = models.ForeignKey(EnquiryFollowupStatus, on_delete=models.SET_NULL, null=True, blank=True)
     notes = models.TextField()
     created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='+')
 
     def __str__(self):
         return (f"{self.student_First_Name} - {self.country_interested} - {self.level_applying_for} "
                 f"- {self.intake_interested}")
+        
+        
     def save(self, *args, **kwargs):
-            # Call the original save method
         super().save(*args, **kwargs)
     
         # Send email to admin
@@ -118,7 +119,7 @@ class enquiry(models.Model):
             "message": {
         "templateid": "195283",
         "url": "https://whatsappdata.s3.ap-south-1.amazonaws.com/userMedia/831c2f88a604a07ca94314b56a4921b8/testing_image.jpeg",
-        "placeholders": ["Ramesh", "Visa Service"],
+        "placeholders": [self.student_First_Name,whatsapp_message],
         "buttons": [{
             "index": 0,
             "type": "visit_website",

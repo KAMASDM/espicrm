@@ -1,7 +1,7 @@
 from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
 
-from Master.models import course_levels, intake, Course, university, assessment_status, CountryInterested
+from Master.models import course_levels, intake, Course, university, assessment_status, CountryInterested,AssesmentFollowupStatus
 from DetailEnquiry.models import Detail_Enquiry
 from Enquiry.models import enquiry
 from django.contrib.auth import get_user_model
@@ -37,7 +37,7 @@ class assessment(models.Model):
     tution_fee = models.CharField(max_length=100, blank=True, null=True)
     fee_currency = models.CharField(max_length=100, blank=True, null=True)
     course_link = models.CharField(max_length=200,blank=True, null=True)
-    # followup = models.ForeignKey(Followup, on_delete=models.SET_NULL, null=True, blank=True)
+    AssesmentFollowup = models.ForeignKey(AssesmentFollowupStatus, on_delete=models.SET_NULL, null=True, blank=True)
     ass_status = models.ForeignKey(assessment_status, blank=True, on_delete=models.CASCADE,null=True)
     notes = models.TextField( blank=True,null=True)
 
@@ -102,7 +102,8 @@ class assessment(models.Model):
         # Send WhatsApp message
         api_key = "634b7217-d8f7-11ed-a7c7-9606c7e32d76"
         sender_whatsapp_number = "917211117272"
-        recipient_whatsapp_number = self.enquiry.Current_Enquiry.student_phone  # Assuming student_phone contains the WhatsApp number
+        recipient_whatsapp_number = self.enquiry.Current_Enquiry.student_phone 
+        Student_name=self.enquiry.Current_Enquiry.student_First_Name # Assuming student_phone contains the WhatsApp number
         whatsapp_message = "Hello, your Assessment has been submitted successfully. We will get back to you soon."
         
         url = "https://wapi.flexiwaba.com/v1/wamessage/sendMessage"
@@ -117,7 +118,7 @@ class assessment(models.Model):
             "message": {
         "templateid": "195283",
         "url": "https://whatsappdata.s3.ap-south-1.amazonaws.com/userMedia/831c2f88a604a07ca94314b56a4921b8/testing_image.jpeg",
-        "placeholders": ["Ramesh", "Hello, your Assessment has been submitted successfully. We will get back to you soon."],
+        "placeholders": [Student_name, whatsapp_message],
         "buttons": [{
             "index": 0,
             "type": "visit_website",
