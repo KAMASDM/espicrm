@@ -11,7 +11,7 @@ from .models import (
     Duolingo_Exam, Gre_Exam, Gmat_Exam, tenth_std_percentage_requirement,
     twelfth_std_percentage_requirement, bachelor_requirement, masters_requirement,
     Rejection_Reason, Detail_Enquiry_Status, Enquiry_Source,
-    Payment_Type, Payment_Status, Payment_Mode
+    Payment_Type, Payment_Status, Payment_Mode,EnquiryFollowupStatus, DetailEnquiryFollowupStatus, AssesmentFollowupStatus, PaymentFollowupStatus
 )
 from .serializers import (
     CountryInterestedSerializer,
@@ -25,7 +25,7 @@ from .serializers import (
     TwelfthStdPercentageRequirementSerializer, BachelorRequirementSerializer,
     MastersRequirementSerializer, RejectionReasonSerializer, DetailEnquiryStatusSerializer,
     EnquirySourceSerializer, PaymentTypeSerializer, PaymentStatusSerializer,
-    PaymentModeSerializer
+    PaymentModeSerializer,EnquiryFollowupStatusSerializer, DetailEnquiryFollowupStatusSerializer, AssesmentFollowupStatusSerializer, PaymentFollowupStatusSerializer
 )
 class CountryInterestedViewSet(viewsets.ModelViewSet):
     queryset = CountryInterested.objects.all()
@@ -154,3 +154,20 @@ class GmatExamViewSet(viewsets.ModelViewSet):
 # class FollowupViewSet(viewsets.ModelViewSet):
 #     queryset = Followup.objects.all()
 #     serializer_class = FollowupSerializer
+
+
+class EnquiryFollowupStatusViewSet(viewsets.ModelViewSet):
+    queryset = EnquiryFollowupStatus.objects.all()
+    serializer_class = EnquiryFollowupStatusSerializer
+
+class DetailEnquiryFollowupStatusViewSet(viewsets.ModelViewSet):
+    queryset = DetailEnquiryFollowupStatus.objects.all()
+    serializer_class = DetailEnquiryFollowupStatusSerializer
+
+class AssesmentFollowupStatusViewSet(viewsets.ModelViewSet):
+    queryset = AssesmentFollowupStatus.objects.all()
+    serializer_class = AssesmentFollowupStatusSerializer
+
+class PaymentFollowupStatusViewSet(viewsets.ModelViewSet):
+    queryset = PaymentFollowupStatus.objects.all()
+    serializer_class = PaymentFollowupStatusSerializer

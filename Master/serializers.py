@@ -7,7 +7,7 @@ from .models import (CountryInterested,
     Duolingo_Exam, Gre_Exam, Gmat_Exam, tenth_std_percentage_requirement,
     twelfth_std_percentage_requirement, bachelor_requirement, masters_requirement,
     Rejection_Reason, Detail_Enquiry_Status, Enquiry_Source,
-    Payment_Type, Payment_Status, Payment_Mode
+    Payment_Type, Payment_Status, Payment_Mode,EnquiryFollowupStatus, DetailEnquiryFollowupStatus, AssesmentFollowupStatus, PaymentFollowupStatus
 )
 class CountryInterestedSerializer(serializers.ModelSerializer):
     class Meta:
@@ -163,3 +163,23 @@ class PaymentModeSerializer(serializers.ModelSerializer):
         model = Payment_Mode
         fields = '__all__'
 
+
+class EnquiryFollowupStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EnquiryFollowupStatus
+        fields = '__all__'
+
+class DetailEnquiryFollowupStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DetailEnquiryFollowupStatus
+        fields = '__all__'
+
+class AssesmentFollowupStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AssesmentFollowupStatus
+        fields = '__all__'
+
+class PaymentFollowupStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PaymentFollowupStatus
+        fields = '__all__'

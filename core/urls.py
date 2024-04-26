@@ -37,7 +37,7 @@ from Master.views import (
     DetailEnquiryStatusViewSet, EnquirySourceViewSet, PaymentTypeViewSet,
     PaymentStatusViewSet, PaymentModeViewSet,
     # FollowupViewSet
-    PaymentStatusViewSet, PaymentModeViewSet
+    PaymentStatusViewSet, PaymentModeViewSet,EnquiryFollowupStatusViewSet, DetailEnquiryFollowupStatusViewSet, AssesmentFollowupStatusViewSet, PaymentFollowupStatusViewSet
 )
 
 router = routers.DefaultRouter()
@@ -80,6 +80,10 @@ router.register(r'payments', PaymentViewSet)
 # router.register(r'followups', FollowupViewSet)
 # router.register(r'followups', FollowupViewSet)
 # from smart_selects.views import ChainedSelectView
+router.register(r'enquiry-followups', EnquiryFollowupStatusViewSet)
+router.register(r'detail-enquiry-followups', DetailEnquiryFollowupStatusViewSet)
+router.register(r'assessment-followups', AssesmentFollowupStatusViewSet)
+router.register(r'payment-followups', PaymentFollowupStatusViewSet)
 
 
 urlpatterns = [

@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 from Enquiry.models import enquiry
 from Master.models import (Edu_Level, Work_Experience, Toefl_Exam, Ielts_Exam, PTE_Exam,
-                           Duolingo_Exam, Gre_Exam, Gmat_Exam, Rejection_Reason, Available_Services,Detail_Enquiry_Status)
+                           Duolingo_Exam, Gre_Exam, Gmat_Exam, Rejection_Reason, Available_Services,Detail_Enquiry_Status,DetailEnquiryFollowupStatus)
 from django.core.mail import EmailMessage
 from django.conf import settings
 import requests
@@ -40,7 +40,7 @@ class Detail_Enquiry(models.Model):
     Gre_Result = models.FileField(upload_to='documents/', blank=True)
     Gmat_Result = models.FileField(upload_to='documents/', blank=True)
     Confirmed_Services = models.ManyToManyField(Available_Services, blank=True)
-    # followup = models.ForeignKey(Followup, on_delete=models.SET_NULL, null=True, blank=True)
+    DetaiEnquiryFollowup = models.ForeignKey(DetailEnquiryFollowupStatus, on_delete=models.SET_NULL, null=True, blank=True)
     Enquiry_Status = models.ForeignKey(Detail_Enquiry_Status, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
@@ -83,8 +83,9 @@ class Detail_Enquiry(models.Model):
         # Send WhatsApp message
         api_key = "634b7217-d8f7-11ed-a7c7-9606c7e32d76"
         sender_whatsapp_number = "917211117272"
-        recipient_whatsapp_number = self.Current_Enquiry.student_phone  # Assuming student_phone contains the WhatsApp number
-        whatsapp_message = "Hello, your enquiry has been submitted successfully. We will get back to you soon."
+        recipient_whatsapp_number = self.Current_Enquiry.student_phone 
+        Student_name = self.Current_Enquiry.student_First_Name# Assuming student_phone contains the WhatsApp number
+        whatsapp_message = "Hello, your Detail enquiry has been submitted successfully. We will get back to you soon."
         
         url = "https://wapi.flexiwaba.com/v1/wamessage/sendMessage"
         headers = {
@@ -94,11 +95,12 @@ class Detail_Enquiry(models.Model):
         payload = {
             "from": sender_whatsapp_number,
             "to": recipient_whatsapp_number,
+           
             "type": "template",
             "message": {
         "templateid": "195283",
         "url": "https://whatsappdata.s3.ap-south-1.amazonaws.com/userMedia/831c2f88a604a07ca94314b56a4921b8/testing_image.jpeg",
-        "placeholders": ["Ramesh", "Hello, your enquiry has been submitted successfully. We will get back to you soon."],
+        "placeholders": [Student_name, "Hello, your Detail enquiry has been submitted successfully. We will get back to you soon."],
         "buttons": [{
             "index": 0,
             "type": "visit_website",

@@ -366,7 +366,7 @@ class EnquiryFollowupStatus(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.enquiry} Followup Status"
+        return f"{self.last_contact_date} Followup Status"
 
 
 
@@ -395,7 +395,7 @@ class DetailEnquiryFollowupStatus(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.enquiry} Followup Status"
+        return f"{self.last_contact_date} Followup Status"
 
 
 class AssesmentFollowupStatus(models.Model):
@@ -423,7 +423,7 @@ class AssesmentFollowupStatus(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.enquiry} Followup Status"
+        return f"{self.last_contact_date} Followup Status"
 
 class PaymentFollowupStatus(models.Model):
     last_contact_date = models.DateField(null=True, blank=True)
@@ -450,4 +450,4 @@ class PaymentFollowupStatus(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.enquiry} Followup Status"
+        return f"{self.last_contact_date} Followup Status"

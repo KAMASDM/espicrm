@@ -1,5 +1,5 @@
 from django.db import models
-from Master.models import Payment_Type, Payment_Status, Payment_Mode,Available_Services
+from Master.models import Payment_Type, Payment_Status, Payment_Mode,Available_Services,PaymentFollowupStatus
 from DetailEnquiry.models import Detail_Enquiry
 from django.contrib.auth import get_user_model
 import requests
@@ -17,6 +17,8 @@ class Payment(models.Model):
     payment_remarks = models.TextField(blank=True, null=True)
     payment_received_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default="",blank=True, null=True)
     payment_document = models.FileField(upload_to='documents/', blank=True)
+    PaymentFollowup = models.ForeignKey(PaymentFollowupStatus, on_delete=models.SET_NULL, null=True, blank=True)
+    
 
    # payment_user = models.ForeignKey('Accounts.CustomUser', on_delete=models.CASCADE, blank=True, null=True)
 
@@ -29,7 +31,8 @@ class Payment(models.Model):
         # Send WhatsApp message
         api_key = "634b7217-d8f7-11ed-a7c7-9606c7e32d76"
         sender_whatsapp_number = "917211117272"
-        recipient_whatsapp_number = self.Memo_For.enquiry.Current_Enquiry.student_phone  # Assuming student_phone contains the WhatsApp number
+        recipient_whatsapp_number = self.Memo_For.enquiry.Current_Enquiry.student_phone
+        student_name=self.Memo_For.enquiry.Current_Enquiry.student_Frist_Name 
         whatsapp_message = "Hello, your Payment has been submitted successfully. We will get back to you soon."
         
         url = "https://wapi.flexiwaba.com/v1/wamessage/sendMessage"
@@ -44,7 +47,7 @@ class Payment(models.Model):
             "message": {
         "templateid": "195283",
         "url": "https://whatsappdata.s3.ap-south-1.amazonaws.com/userMedia/831c2f88a604a07ca94314b56a4921b8/testing_image.jpeg",
-        "placeholders": ["Ramesh", "Hello, your Payment has been submitted successfully. We will get back to you soon."],
+        "placeholders": [student_name, whatsapp_message],
         "buttons": [{
             "index": 0,
             "type": "visit_website",
