@@ -6,9 +6,13 @@ from .models import Detail_Enquiry
 from .serializers import DetailEnquirySerializer
 from rest_framework.response import Response
 import requests
+from rest_framework.permissions import IsAuthenticated  
+from rest_framework_simplejwt.authentication import JWTAuthentication 
 class DetailEnquiryViewSet(viewsets.ModelViewSet):
     queryset = Detail_Enquiry.objects.all()
     serializer_class = DetailEnquirySerializer
+    authentication_classes = [JWTAuthentication]  
+    permission_classes = [IsAuthenticated] 
     
     
     # def perform_create(self, serializer):
