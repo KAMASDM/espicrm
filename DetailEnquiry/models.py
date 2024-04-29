@@ -39,7 +39,7 @@ class Detail_Enquiry(models.Model):
     Duolingo_Result = models.FileField(upload_to='documents/', blank=True)
     Gre_Result = models.FileField(upload_to='documents/', blank=True)
     Gmat_Result = models.FileField(upload_to='documents/', blank=True)
-    Confirmed_Services = models.ManyToManyField(Available_Services)
+    Confirmed_Services = models.ManyToManyField(Available_Services,blank=True)
     DetaiEnquiryFollowup = models.ForeignKey(DetailEnquiryFollowupStatus, on_delete=models.SET_NULL, null=True, blank=True)
     Enquiry_Status = models.ForeignKey(Detail_Enquiry_Status, on_delete=models.CASCADE, blank=True, null=True)
 
@@ -84,7 +84,7 @@ class Detail_Enquiry(models.Model):
         api_key = "634b7217-d8f7-11ed-a7c7-9606c7e32d76"
         sender_whatsapp_number = "917211117272"
         recipient_whatsapp_number = self.Current_Enquiry.student_phone 
-        Student_name = self.Current_Enquiry.student_First_Name# Assuming student_phone contains the WhatsApp number
+        Student_name = self.Current_Enquiry.student_First_Name
         whatsapp_message = "Hello, your Detail enquiry has been submitted successfully. We will get back to you soon."
         
         url = "https://wapi.flexiwaba.com/v1/wamessage/sendMessage"
@@ -100,7 +100,7 @@ class Detail_Enquiry(models.Model):
             "message": {
         "templateid": "195283",
         "url": "https://whatsappdata.s3.ap-south-1.amazonaws.com/userMedia/831c2f88a604a07ca94314b56a4921b8/testing_image.jpeg",
-        "placeholders": [Student_name, "Hello, your Detail enquiry has been submitted successfully. We will get back to you soon."],
+        "placeholders": [Student_name, whatsapp_message],
         "buttons": [{
             "index": 0,
             "type": "visit_website",

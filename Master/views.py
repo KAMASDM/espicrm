@@ -27,6 +27,8 @@ from .serializers import (
     EnquirySourceSerializer, PaymentTypeSerializer, PaymentStatusSerializer,
     PaymentModeSerializer,EnquiryFollowupStatusSerializer, DetailEnquiryFollowupStatusSerializer, AssesmentFollowupStatusSerializer, PaymentFollowupStatusSerializer
 )
+from rest_framework.permissions import IsAuthenticated  # Import IsAuthenticated permission
+from rest_framework_simplejwt.authentication import JWTAuthentication
 class CountryInterestedViewSet(viewsets.ModelViewSet):
     queryset = CountryInterested.objects.all()
     serializer_class = CountryInterestedSerializer
@@ -159,15 +161,23 @@ class GmatExamViewSet(viewsets.ModelViewSet):
 class EnquiryFollowupStatusViewSet(viewsets.ModelViewSet):
     queryset = EnquiryFollowupStatus.objects.all()
     serializer_class = EnquiryFollowupStatusSerializer
+    authentication_classes = [JWTAuthentication]  # Add JWTAuthentication
+    permission_classes = [IsAuthenticated] 
 
 class DetailEnquiryFollowupStatusViewSet(viewsets.ModelViewSet):
     queryset = DetailEnquiryFollowupStatus.objects.all()
     serializer_class = DetailEnquiryFollowupStatusSerializer
+    authentication_classes = [JWTAuthentication]  # Add JWTAuthentication
+    permission_classes = [IsAuthenticated] 
 
 class AssesmentFollowupStatusViewSet(viewsets.ModelViewSet):
     queryset = AssesmentFollowupStatus.objects.all()
     serializer_class = AssesmentFollowupStatusSerializer
+    authentication_classes = [JWTAuthentication]  # Add JWTAuthentication
+    permission_classes = [IsAuthenticated] 
 
 class PaymentFollowupStatusViewSet(viewsets.ModelViewSet):
     queryset = PaymentFollowupStatus.objects.all()
     serializer_class = PaymentFollowupStatusSerializer
+    authentication_classes = [JWTAuthentication]  # Add JWTAuthentication
+    permission_classes = [IsAuthenticated] 

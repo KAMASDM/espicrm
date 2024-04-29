@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 # from graphene_django.views import GraphQLView
+from rest_framework_simplejwt.views import TokenObtainPairView
 from Master.schema import schema
 from rest_framework import routers
 from Enquiry.views  import EnquiryViewSet
@@ -39,6 +40,8 @@ from Master.views import (
     # FollowupViewSet
     PaymentStatusViewSet, PaymentModeViewSet,EnquiryFollowupStatusViewSet, DetailEnquiryFollowupStatusViewSet, AssesmentFollowupStatusViewSet, PaymentFollowupStatusViewSet
 )
+
+
 
 router = routers.DefaultRouter()
 router.register(r'countriesIntersted', CountryInterestedViewSet)
@@ -91,6 +94,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('chaining/', include('smart_selects.urls')),
+    path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair')
+   
 
     # path('admin_charts/', include('admin_charts.urls')),
     ]
