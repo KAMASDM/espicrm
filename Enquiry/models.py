@@ -16,7 +16,7 @@ class enquiry(models.Model):
     student_First_Name = models.CharField(max_length=100)
     student_Last_Name = models.CharField(max_length=100)
     student_passport = models.CharField(max_length=100)
-    Source_Enquiry = models.ForeignKey(Enquiry_Source, on_delete=models.CASCADE,blank=True, default='Website')
+    Source_Enquiry = models.ForeignKey(Enquiry_Source, on_delete=models.CASCADE,blank=True,null =True)
 
     # Contact Info
     student_phone = models.CharField(max_length=100)
@@ -29,10 +29,10 @@ class enquiry(models.Model):
     student_zip = models.CharField(max_length=10)
 
     # Education Info
-    current_education = models.ForeignKey(current_education, on_delete=models.CASCADE)
+    current_education = models.ForeignKey(current_education, on_delete=models.CASCADE,null =True,blank=True)
 
     # Enquiry Info
-    country_interested = models.ForeignKey(CountryInterested,on_delete=models.CASCADE)
+    country_interested = models.ForeignKey(CountryInterested,on_delete=models.CASCADE,null =True,blank=True)
     university_interested = ChainedForeignKey(
         university,
         chained_field="country_interested",
@@ -40,6 +40,8 @@ class enquiry(models.Model):
         show_all=False,
         auto_choose=True,
         sort=True,
+        blank=True,
+        null=True
     )
     course_interested = ChainedForeignKey(
         Course,
@@ -51,17 +53,17 @@ class enquiry(models.Model):
         blank=True,
         null=True
     )
-    level_applying_for = models.ForeignKey(course_levels, on_delete=models.CASCADE)
-    intake_interested = models.ForeignKey(intake, on_delete=models.CASCADE)
+    level_applying_for = models.ForeignKey(course_levels, on_delete=models.CASCADE,null =True,blank=True)
+    intake_interested = models.ForeignKey(intake, on_delete=models.CASCADE,null =True,blank=True)
     Interested_Services = models.ManyToManyField(Available_Services,blank=True, related_name="Interested_Services", default='Counselling')
 
 
     # For Counsellor
-    assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    enquiry_status = models.ForeignKey(enquiry_status, on_delete=models.CASCADE)
-    EnquiryFollowup = models.ForeignKey(EnquiryFollowupStatus, on_delete=models.SET_NULL, null=True, blank=True)
+    assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,null=True,blank=True)
+    enquiry_status = models.ForeignKey(enquiry_status, on_delete=models.CASCADE,null =True,blank=True)
+    EnquiryFollowup = models.ForeignKey(EnquiryFollowupStatus, on_delete=models.CASCADE, null=True, blank=True)
     notes = models.TextField()
-    created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='+')
+    created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='+',null=True, blank=True)
 
     def __str__(self):
         return (f"{self.student_First_Name} - {self.country_interested} - {self.level_applying_for} "
