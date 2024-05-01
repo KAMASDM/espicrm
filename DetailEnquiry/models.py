@@ -100,7 +100,7 @@ class Detail_Enquiry(models.Model):
             "message": {
         "templateid": "195283",
         "url": "https://whatsappdata.s3.ap-south-1.amazonaws.com/userMedia/831c2f88a604a07ca94314b56a4921b8/testing_image.jpeg",
-        "placeholders": [Student_name, whatsapp_message],
+        "placeholders": [Student_name,whatsapp_message ],
         "buttons": [{
             "index": 0,
             "type": "visit_website",
