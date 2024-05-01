@@ -31,8 +31,8 @@ class Payment(models.Model):
         # Send WhatsApp message
         api_key = "634b7217-d8f7-11ed-a7c7-9606c7e32d76"
         sender_whatsapp_number = "917211117272"
-        recipient_whatsapp_number = self.Memo_For.enquiry.Current_Enquiry.student_phone
-        student_name=self.Memo_For.enquiry.Current_Enquiry.student_Frist_Name 
+        recipient_whatsapp_number = self.Memo_For.Current_Enquiry.student_phone
+        student_name=self.Memo_For.Current_Enquiry.student_First_Name 
         whatsapp_message = "Hello, your Payment has been submitted successfully. We will get back to you soon."
         
         url = "https://wapi.flexiwaba.com/v1/wamessage/sendMessage"
