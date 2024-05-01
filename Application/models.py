@@ -5,7 +5,7 @@ from Enquiry.models import enquiry
 import requests
 # Create your models here.
 class Application(models.Model):
-    application = models.ForeignKey(assessment, on_delete=models.CASCADE)
+    application = models.ForeignKey(assessment, on_delete=models.CASCADE,blank=True,null=True)
     sop = models.FileField(upload_to='sop', blank=True,null=True)
     cv = models.FileField(upload_to='cv', blank=True,null=True)
     passport = models.FileField(upload_to='passport', blank=True,null=True)
@@ -33,7 +33,7 @@ class Application(models.Model):
         api_key = "634b7217-d8f7-11ed-a7c7-9606c7e32d76"
         sender_whatsapp_number = "917211117272"
         recipient_whatsapp_number =  self.application.enquiry.Current_Enquiry.student_phone  # Assuming student_phone contains the WhatsApp number
-        student_name = self.application.enquiry.Current_Enquiry.student_Frist_Name
+        student_name = self.application.enquiry.Current_Enquiry.student_First_Name
         whatsapp_message = "Hello, your Application has been submitted successfully. We will get back to you soon."
         
         url = "https://wapi.flexiwaba.com/v1/wamessage/sendMessage"
