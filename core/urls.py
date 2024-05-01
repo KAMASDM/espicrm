@@ -25,6 +25,7 @@ from DetailEnquiry.views  import DetailEnquiryViewSet
 from Assessment.views import AssessmentViewSet
 from Application.views import ApplicationViewSet
 from Accounts.views import PaymentViewSet
+from report.views import EnquirySummaryReport, LeadConversionReport, RegionWiseEnquiryReport
 from Master.views import (
     CountryInterestedViewSet,
     CountryViewSet, CourseLevelsViewSet, AvailableServicesViewSet,
@@ -40,7 +41,7 @@ from Master.views import (
     # FollowupViewSet
     PaymentStatusViewSet, PaymentModeViewSet,EnquiryFollowupStatusViewSet, DetailEnquiryFollowupStatusViewSet, AssesmentFollowupStatusViewSet, PaymentFollowupStatusViewSet
 )
-
+from user.views import CustomUserViewSet
 
 
 router = routers.DefaultRouter()
@@ -87,6 +88,7 @@ router.register('enquiry-followups', EnquiryFollowupStatusViewSet)
 router.register('detail-enquiry-followups', DetailEnquiryFollowupStatusViewSet)
 router.register('assessment-followups', AssesmentFollowupStatusViewSet)
 router.register('payment-followups', PaymentFollowupStatusViewSet)
+router.register('users', CustomUserViewSet)
 
 
 urlpatterns = [
@@ -95,6 +97,9 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('chaining/', include('smart_selects.urls')),
     path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('enquiry-summaryreport/', EnquirySummaryReport.as_view(), name='enquiry_summary'),
+    path('lead-conversionreport/', LeadConversionReport.as_view(), name='lead_conversion'),
+    path('region-wise-enquiryreport/', RegionWiseEnquiryReport.as_view(), name='region_wise_enquiry'),
    
 
     # path('admin_charts/', include('admin_charts.urls')),

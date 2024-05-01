@@ -10,8 +10,8 @@ import requests
 from django.core.mail import EmailMessage
 from django.conf import settings
 class assessment(models.Model):
-    assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    enquiry = models.ForeignKey(Detail_Enquiry, on_delete=models.CASCADE)
+    assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, blank=True, null=True)
+    enquiry = models.ForeignKey(Detail_Enquiry, on_delete=models.CASCADE, blank=True, null=True)
     student_country = models.ForeignKey(CountryInterested, on_delete=models.CASCADE, blank=True,)
     university = ChainedForeignKey(
         university,
@@ -29,6 +29,7 @@ class assessment(models.Model):
         auto_choose=True,
         sort=True,
         blank=True,
+        null =True,
     )
     intake_interested = models.ForeignKey(intake, on_delete=models.CASCADE, blank=True, null=True)
     specialisation = models.CharField(max_length=100, blank=True, null=True)

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'Application',
     'DetailEnquiry',
     'Accounts',
+    'report',
     'jazzmin',
     'graphene_django',
     'import_export',
