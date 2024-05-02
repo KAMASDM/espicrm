@@ -173,6 +173,7 @@ class DetailEnquiryFollowupStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = DetailEnquiryFollowupStatus
         fields = '__all__'
+        depth = 1
 
 class AssesmentFollowupStatusSerializer(serializers.ModelSerializer):
     class Meta:
