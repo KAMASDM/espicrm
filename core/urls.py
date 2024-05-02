@@ -20,7 +20,7 @@ from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView
 from Master.schema import schema
 from rest_framework import routers
-from Enquiry.views  import EnquiryViewSet
+from Enquiry.views  import EnquiryViewSet, EnquiryCreateView
 from DetailEnquiry.views  import DetailEnquiryViewSet
 from Assessment.views import AssessmentViewSet
 from Application.views import ApplicationViewSet
@@ -100,6 +100,7 @@ urlpatterns = [
     path('enquiry-summaryreport/', EnquirySummaryReport.as_view(), name='enquiry_summary'),
     path('lead-conversionreport/', LeadConversionReport.as_view(), name='lead_conversion'),
     path('region-wise-enquiryreport/', RegionWiseEnquiryReport.as_view(), name='region_wise_enquiry'),
+    path('api/create-enquiry/', EnquiryCreateView.as_view(), name='create-enquiry'),
 
 
     # path('admin_charts/', include('admin_charts.urls')),
