@@ -25,7 +25,8 @@ from DetailEnquiry.views  import DetailEnquiryViewSet
 from Assessment.views import AssessmentViewSet
 from Application.views import ApplicationViewSet
 from Accounts.views import PaymentViewSet
-from report.views import EnquirySummaryReport, LeadConversionReport, RegionWiseEnquiryReport
+from report.views import (EnquirySummaryReport, LeadConversionReport, RegionWiseEnquiryReport,ApplicationStatusReport,
+                          AssessmentOverviewReport, UniversityCoursePopularityReport)
 from Master.views import (
     CountryInterestedViewSet,
     CountryViewSet, CourseLevelsViewSet, AvailableServicesViewSet,
@@ -97,9 +98,14 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('chaining/', include('smart_selects.urls')),
     path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    #Sales and Enquiries Reports
     path('enquiry-summaryreport/', EnquirySummaryReport.as_view(), name='enquiry_summary'),
     path('lead-conversionreport/', LeadConversionReport.as_view(), name='lead_conversion'),
     path('region-wise-enquiryreport/', RegionWiseEnquiryReport.as_view(), name='region_wise_enquiry'),
+    #Admission and Application Reports
+    path('api/application-status/', ApplicationStatusReport.as_view(), name='application-status'),
+    path('api/assessment-overview/', AssessmentOverviewReport.as_view(), name='assessment-overview'),
+    path('api/university-course-popularity/', UniversityCoursePopularityReport.as_view(), name='university-course-popularity'),
    
 
     # path('admin_charts/', include('admin_charts.urls')),

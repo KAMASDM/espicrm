@@ -21,6 +21,7 @@ class Application(models.Model):
     other_documents = models.FileField(upload_to='other_documents', blank=True,null=True)
     # followup = models.ForeignKey(Followup, on_delete=models.SET_NULL, null=True, blank=True)
     application_status = models.ForeignKey(application_status, max_length=100, blank=True, on_delete=models.CASCADE,null=True)
+    Rejection_reason = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return (f"{self.application}")
