@@ -25,7 +25,7 @@ from DetailEnquiry.views  import DetailEnquiryViewSet
 from Assessment.views import AssessmentViewSet
 from Application.views import ApplicationViewSet
 from Accounts.views import PaymentViewSet
-from report.views import (EnquirySummaryReport, LeadConversionReport, RegionWiseEnquiryReport)
+from report.views import (EnquirySummaryReport, LeadConversionReport, RegionWiseEnquiryReport,InterestAnalysisReport,EngagementAnalysisReport,CampaignPerformanceReport,UniversityCoursePopularityReport,ApplicationStatusReport,AssessmentOverviewReport)
 from Master.views import (
     CountryInterestedViewSet,
     CountryViewSet, CourseLevelsViewSet, AvailableServicesViewSet,
@@ -39,7 +39,8 @@ from Master.views import (
     DetailEnquiryStatusViewSet, EnquirySourceViewSet, PaymentTypeViewSet,
     PaymentStatusViewSet, PaymentModeViewSet,
     # FollowupViewSet
-    PaymentStatusViewSet, PaymentModeViewSet,EnquiryFollowupStatusViewSet, DetailEnquiryFollowupStatusViewSet, AssesmentFollowupStatusViewSet, PaymentFollowupStatusViewSet
+    PaymentStatusViewSet, PaymentModeViewSet,EnquiryFollowupStatusViewSet, DetailEnquiryFollowupStatusViewSet,
+AssesmentFollowupStatusViewSet, PaymentFollowupStatusViewSet,
 )
 from user.views import CustomUserViewSet
 
@@ -101,6 +102,14 @@ urlpatterns = [
     path('lead-conversionreport/', LeadConversionReport.as_view(), name='lead_conversion'),
     path('region-wise-enquiryreport/', RegionWiseEnquiryReport.as_view(), name='region_wise_enquiry'),
     path('api/create-enquiry/', EnquiryCreateView.as_view(), name='create-enquiry'),
+       #Admission and Application Reports
+    path('api/application-status/', ApplicationStatusReport.as_view(), name='application-status'),
+    path('api/assessment-overview/', AssessmentOverviewReport.as_view(), name='assessment-overview'),
+    path('api/university-course-popularity/', UniversityCoursePopularityReport.as_view(), name='university-course-popularity'),
+    #CampaignPerformanceReport
+    path('api/campaign-performance/', CampaignPerformanceReport.as_view(), name='campaign_performance_report'),
+    path('api/engagement-analysis/', EngagementAnalysisReport.as_view(), name='engagement-analysis'),
+    path('api/interest-analysis/', InterestAnalysisReport.as_view(), name='interest-analysis'),
 
 
     # path('admin_charts/', include('admin_charts.urls')),
