@@ -10,7 +10,7 @@ import requests
 from django.core.mail import EmailMessage
 from django.conf import settings
 class assessment(models.Model):
-    assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,null=True,black=True)
+    assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,null=True,blank=True)
     enquiry = models.ForeignKey(Detail_Enquiry, on_delete=models.CASCADE,blank=True, null=True)
     student_country = models.ForeignKey(CountryInterested, on_delete=models.CASCADE, blank=True,)
     university = ChainedForeignKey(
