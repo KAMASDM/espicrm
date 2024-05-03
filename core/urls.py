@@ -25,7 +25,11 @@ from DetailEnquiry.views  import DetailEnquiryViewSet
 from Assessment.views import AssessmentViewSet
 from Application.views import ApplicationViewSet
 from Accounts.views import PaymentViewSet
-from report.views import (EnquirySummaryReport, LeadConversionReport, RegionWiseEnquiryReport,InterestAnalysisReport,EngagementAnalysisReport,CampaignPerformanceReport,UniversityCoursePopularityReport,ApplicationStatusReport,AssessmentOverviewReport)
+from report.views import (EnquirySummaryReport, LeadConversionReport, RegionWiseEnquiryReport,InterestAnalysisReport,
+                          EngagementAnalysisReport,CampaignPerformanceReport,UniversityCoursePopularityReport,
+                          ApplicationStatusReport,AssessmentOverviewReport,StandardizedTestScoresReportAPIView,
+                          EducationBackgroundReportAPIView,UserActivityReport,ServiceRequestReport
+                          )
 from Master.views import (
     CountryInterestedViewSet,
     CountryViewSet, CourseLevelsViewSet, AvailableServicesViewSet,
@@ -102,7 +106,7 @@ urlpatterns = [
     path('lead-conversionreport/', LeadConversionReport.as_view(), name='lead_conversion'),
     path('region-wise-enquiryreport/', RegionWiseEnquiryReport.as_view(), name='region_wise_enquiry'),
     path('api/create-enquiry/', EnquiryCreateView.as_view(), name='create-enquiry'),
-       #Admission and Application Reports
+    #Admission and Application Reports
     path('api/application-status/', ApplicationStatusReport.as_view(), name='application-status'),
     path('api/assessment-overview/', AssessmentOverviewReport.as_view(), name='assessment-overview'),
     path('api/university-course-popularity/', UniversityCoursePopularityReport.as_view(), name='university-course-popularity'),
@@ -110,7 +114,12 @@ urlpatterns = [
     path('api/campaign-performance/', CampaignPerformanceReport.as_view(), name='campaign_performance_report'),
     path('api/engagement-analysis/', EngagementAnalysisReport.as_view(), name='engagement-analysis'),
     path('api/interest-analysis/', InterestAnalysisReport.as_view(), name='interest-analysis'),
-
+    #Academic Performance Reports
+    path('standardized-test-scores/', StandardizedTestScoresReportAPIView.as_view(), name='standardized-test-scores-report'),
+    path('education-background/', EducationBackgroundReportAPIView.as_view(), name='education-background-report'),
+    #Customer Service Reports
+    path('user-activity/', UserActivityReport.as_view(), name='user_activity_report'),
+    path('service-request/', ServiceRequestReport.as_view(), name='service_request_report'),
 
     # path('admin_charts/', include('admin_charts.urls')),
     ]
