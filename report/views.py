@@ -159,3 +159,175 @@ class InterestAnalysisReport(APIView):
             'levels_of_study': levels_of_study
         }
         return Response(report)
+    
+    
+# from rest_framework.views import APIView
+# from rest_framework.response import Response
+# from .models import Payment
+# from Accounts.serializers import PaymentSerializer
+
+# class PaymentTrackingReport(APIView):
+#     def get(self, request, format=None):
+#         payments = Payment.objects.all()
+#         serializer = PaymentSerializer(payments, many=True)
+#         return Response(serializer.data)
+
+# class RevenueAnalysisReport(APIView):
+#     def get(self, request, format=None):
+#         # Perform revenue analysis calculations
+#         # Example: Calculate total revenue from payments
+#         total_revenue = Payment.objects.aggregate(total=models.Sum('payment_amount'))['total']
+#         return Response({'total_revenue': total_revenue})
+
+# class ScholarshipFundingReport(APIView):
+#     def get(self, request, format=None):
+#         # Query payments related to scholarships or funding
+#         scholarship_payments = Payment.objects.filter(Payment_For__name='Scholarship')
+#         serializer = PaymentSerializer(scholarship_payments, many=True)
+#         return Response(serializer.data)
+
+
+
+from DetailEnquiry.serializers import DetailEnquirySerializer
+
+class StandardizedTestScoresReportAPIView(APIView):
+    def get(self, request):
+        # Query standardized test scores data
+        test_scores_data = Detail_Enquiry.objects.all().values(
+            'Current_Enquiry__student_First_Name',
+            'ielts_Exam__Overall',  # Example field for IELTS score
+            'Toefl_Exam__Overall',  # Example field for TOEFL score
+            'PTE_Exam__Overall', # Example field for PTE
+            'Duolingo_Exam__Overall', # Example field for Duolingo_Exam
+            'Gre_Exam__Overall', # Example field for Gre
+            'Gmat_Exam__Overall', # Example field for Gmat
+            
+            # Add more fields for other test scores as needed
+        )
+        return Response(test_scores_data)
+
+# class EducationBackgroundReportAPIView(APIView):
+#     def get(self, request):
+#         # Query education background data
+#         education_background_data = Detail_Enquiry.objects.all().values(
+#             'id',
+#             'Current_Education_Details__level',  # Example field for current education level
+#             'Work_Experience__Designation',  # Example field for work experience
+#             # Add more fields for other education background information as needed
+#         )
+#         return Response(education_background_data)
+
+# from datetime import datetime
+
+# class EducationBackgroundReportAPIView(APIView):
+#     def get(self, request):
+#         # Query education background data
+#         education_background_data = Detail_Enquiry.objects.all().values(
+#             'id',
+#             'Current_Education_Details__level',
+#             'Work_Experience__Designation',  # Example field for work experience
+#             # Add more fields for other education background information as needed
+#         )
+
+        # Calculate total years of experience for each record
+    #     for data in education_background_data:
+    #         work_experience_id = data['Work_Experience']
+    #         if work_experience_id:
+    #             work_experience = Work_Experience.objects.get(pk=work_experience_id)
+    #             start_date = work_experience.Start_Date
+    #             end_date = work_experience.End_Date
+    #             if start_date and end_date:
+    #                 # Calculate total years of experience
+    #                 total_experience_years = self.calculate_experience_years(start_date, end_date)
+    #                 data['total_experience_years'] = total_experience_years
+    #             else:
+    #                 data['total_experience_years'] = None
+    #         else:
+    #             data['total_experience_years'] = None
+
+    #     return Response(education_background_data)
+
+    # def calculate_experience_years(self, start_date, end_date):
+    #     # Calculate total years of experience
+    #     total_experience_years = (end_date - start_date).days / 365.25
+    #     return round(total_experience_years, 1)
+
+from datetime import datetime
+
+class EducationBackgroundReportAPIView(APIView):
+    def get(self, request):
+        # Query education background data
+        education_background_data = Detail_Enquiry.objects.all().values(
+            'id',
+            'Current_Education_Details__level',
+            'Graduation_Education_Details__level',
+            'Twelveth_Education_Details__level',
+            'Tenth_Education_Details__level',
+            # Example field for current education level
+            'Work_Experience__Designation',  # Example field for work experience
+            # Add more fields for other education background information as needed
+        )
+
+        # Calculate total years of experience for each record
+        for data in education_background_data:
+            work_experience_designation = data['Work_Experience__Designation']
+            if work_experience_designation:
+                total_experience_years = self.calculate_total_experience_years(work_experience_designation)
+                data['total_experience_years'] = total_experience_years
+            else:
+                data['total_experience_years'] = None
+
+        return Response(education_background_data)
+
+    def calculate_total_experience_years(self, designation):
+        # Query work experiences for the given designation
+        work_experiences = Work_Experience.objects.filter(Designation=designation)
+        
+        total_experience_years = 0
+        for experience in work_experiences:
+            start_date = experience.Start_Date
+            end_date = experience.End_Date
+            
+            # Calculate the difference between end date and start date
+            duration = (end_date - start_date).days
+            
+            # Convert days to years (assuming 365.25 days per year to account for leap years)
+            years = duration / 365.25
+            
+            total_experience_years = years
+        
+        return round(total_experience_years, 1)  # Round to two decimal places
+
+
+
+
+from django.contrib.auth.models import User
+from user.models import CustomUser
+
+class UserActivityReport(APIView):
+    def get(self, request):
+        # Query to count login frequency
+        login_frequency = CustomUser.objects.annotate(login_count=models.Count('last_login')).values('username', 'login_count')
+
+        # Query to find most accessed services
+        # Assuming there's a field in the User model linking to accessed services
+
+        # Query to track feature usage
+        # Assuming there's a field in the User model tracking feature usage
+
+        return Response({
+            'login_frequency': login_frequency,
+            # Add data for most accessed services and feature usage
+        })
+
+class ServiceRequestReport(APIView):
+    def get(self, request):
+        # Query to get details on enquiries and follow-up status
+        service_requests = enquiry.objects.all().values(
+            'id',
+            'student_First_Name',
+            'EnquiryFollowup__status',  # Assuming this field tracks follow-up status
+            # Add more fields as needed for response times and pending actions
+        )
+
+        return Response(service_requests)
