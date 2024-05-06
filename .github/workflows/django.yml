@@ -1,0 +1,36 @@
+name: Django CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+
+    env:
+      SECRET_KEY: 'django-insecure-9pqxw7j^m&jfmii8plfu1w&^rr+lerncd^fcjia)l&kz78c+kk'
+      STATIC_URL: 'static/'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r new.txt
+
+    - name: Run Tests
+      run: |
+        python manage.py test --settings='powercrm.settings.local'
+        echo "::set-output name=result::tests_passed"

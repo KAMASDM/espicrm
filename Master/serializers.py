@@ -168,6 +168,7 @@ class EnquiryFollowupStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = EnquiryFollowupStatus
         fields = '__all__'
+        depth = 1
 
 class DetailEnquiryFollowupStatusSerializer(serializers.ModelSerializer):
     class Meta:
