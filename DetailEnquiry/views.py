@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from rest_framework import viewsets
+from rest_framework import viewsets,status
 from .models import Detail_Enquiry
 from .serializers import DetailEnquirySerializer
 from rest_framework.response import Response
@@ -19,6 +19,7 @@ class DetailEnquiryCreate(generics.ListCreateAPIView):
     queryset = Detail_Enquiry.objects.all()
     serializer_class = DetailEnquirySerializer
     
+
     
     # def perform_create(self, serializer):
     #     instance = serializer.save()
