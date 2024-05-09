@@ -8,11 +8,16 @@ from rest_framework.response import Response
 import requests
 from rest_framework.permissions import IsAuthenticated  
 from rest_framework_simplejwt.authentication import JWTAuthentication 
+from rest_framework import generics
 class DetailEnquiryViewSet(viewsets.ModelViewSet):
     queryset = Detail_Enquiry.objects.all()
     serializer_class = DetailEnquirySerializer
     authentication_classes = [JWTAuthentication]  
-    permission_classes = [IsAuthenticated] 
+    permission_classes = [IsAuthenticated]
+
+class DetailEnquiryCreate(generics.ListCreateAPIView):
+    queryset = Detail_Enquiry.objects.all()
+    serializer_class = DetailEnquirySerializer
     
 
     

@@ -331,3 +331,54 @@ class ServiceRequestReport(APIView):
         )
 
         return Response(service_requests)
+from Accounts.models import Payment
+from Accounts.serializers import PaymentSerializer
+from django.db.models import Sum
+
+class PaymentTrackingReportAPIView(APIView):
+    def get(self, request):
+        # Query all payments
+        payments = Payment.objects.all()
+        
+        # Serialize payments
+        serializer = PaymentSerializer(payments, many=True)
+        
+        return Response(serializer.data)
+
+class RevenueAnalysisReportAPIView(APIView):
+    def get(self, request):
+        # Get the ID of the 'success' status
+        success_status_id = Payment_Status.objects.get(Status='success').id
+        
+        # Query successful payments
+        successful_payments = Payment.objects.filter(payment_status_id=success_status_id)
+        
+        # Aggregate revenue
+        total_revenue = successful_payments.aggregate(total=Sum('payment_amount'))['total']
+        
+        
+        revenue_by_course = successful_payments.values('Payment_For__Services').annotate(total_revenue=Sum('payment_amount'))
+        revenue_by_university = successful_payments.values('Payment_For__Interested_Services').annotate(total_revenue=Sum('payment_amount'))
+        
+        return Response({
+            'total_revenue_all': total_revenue,
+            'revenue_by_course': revenue_by_course,
+            'revenue_by_university': revenue_by_university,
+        })
+        
+
+
+class ScholarshipFundingReportAPIView(APIView):
+    def get(self, request):
+        # Query payments related to scholarships and funding
+        scholarship_payments = Payment_Type.objects.filter(Type='Scholarship')
+        funding_payments = Payment_Type.objects.filter(Type='Funding')
+        
+        # Serialize scholarship_payments and funding_payments
+        scholarship_serializer = PaymentSerializer(scholarship_payments, many=True)
+        funding_serializer = PaymentSerializer(funding_payments, many=True)
+        
+        return Response({
+            'scholarship_payments': scholarship_serializer.data,
+            'funding_payments': funding_serializer.data
+        })

@@ -21,14 +21,15 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from Master.schema import schema
 from rest_framework import routers
 from Enquiry.views  import EnquiryViewSet, EnquiryCreateView
-from DetailEnquiry.views  import DetailEnquiryViewSet
+from DetailEnquiry.views  import DetailEnquiryViewSet, DetailEnquiryCreate
 from Assessment.views import AssessmentViewSet
 from Application.views import ApplicationViewSet
 from Accounts.views import PaymentViewSet
 from report.views import (EnquirySummaryReport, LeadConversionReport, RegionWiseEnquiryReport,InterestAnalysisReport,
                           EngagementAnalysisReport,CampaignPerformanceReport,UniversityCoursePopularityReport,
                           ApplicationStatusReport,AssessmentOverviewReport,StandardizedTestScoresReportAPIView,
-                          EducationBackgroundReportAPIView,UserActivityReport,ServiceRequestReport
+                          EducationBackgroundReportAPIView,UserActivityReport,ServiceRequestReport,PaymentTrackingReportAPIView, 
+                          RevenueAnalysisReportAPIView, ScholarshipFundingReportAPIView
                           )
 from Master.views import (
     CountryInterestedViewSet,
@@ -119,7 +120,12 @@ urlpatterns = [
     path('education-background/', EducationBackgroundReportAPIView.as_view(), name='education-background-report'),
     #Customer Service Reports
     path('user-activity/', UserActivityReport.as_view(), name='user_activity_report'),
-    path('service-request/', ServiceRequestReport.as_view(), name='service_request_report'),
+    path('service-request/', ServiceRequestReport.as_view(), name='service_request_report'),\
+    #Finance Reports
+    path('payment-tracking-report/', PaymentTrackingReportAPIView.as_view(), name='payment-tracking-report'),
+    path('revenue-analysis-report/', RevenueAnalysisReportAPIView.as_view(), name='revenue-analysis-report'),
+    path('scholarship-funding-report/', ScholarshipFundingReportAPIView.as_view(), name='scholarship-funding-report'),
+    path('api/create-detail-enquiry/', DetailEnquiryCreate.as_view(), name='create-detail-enquiry'),
 
     # path('admin_charts/', include('admin_charts.urls')),
     ]

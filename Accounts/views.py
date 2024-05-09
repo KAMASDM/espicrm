@@ -10,5 +10,5 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 class PaymentViewSet(viewsets.ModelViewSet):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
-    authentication_classes = [JWTAuthentication]  
-    permission_classes = [IsAuthenticated] 
+    authentication_classes = [JWTAuthentication]      
+    permission_classes = [IsAuthenticated]
