@@ -24,57 +24,57 @@ class Detail_Enquiry(models.Model):
     Father_Occupation = models.CharField(max_length=100, blank=True, null=True)
     Father_Annual_Income = models.FloatField(blank=True, null=True)
     Refusal = models.ForeignKey(Rejection_Reason, on_delete=models.CASCADE, blank=True, null=True)
-    Twelveth_Document = models.FileField(upload_to='documents/', blank=True)
-    Tenth_Document = models.FileField(upload_to='documents/', blank=True)
-    Graduation_Marksheet = models.FileField(upload_to='documents/', blank=True)
-    Graduation_Certificate = models.FileField(upload_to='documents/', blank=True)
-    UG_Marksheet = models.FileField(upload_to='documents/', blank=True)
-    UG_Certificate = models.FileField(upload_to='documents/', blank=True)
-    Work_Experience_Document = models.FileField(upload_to='documents/', blank=True)
-    Passport_Document = models.FileField(upload_to='documents/', blank=True)
-    Offer_Letter = models.FileField(upload_to='documents/', blank=True)
-    Ielts_Result = models.FileField(upload_to='documents/', blank=True)
+    Twelveth_Document = models.FileField(upload_to='documents/', blank=True,null=False)
+    Tenth_Document = models.FileField(upload_to='documents/', blank=True, null=True)
+    Graduation_Marksheet = models.FileField(upload_to='documents/',blank=True, null=True)
+    Graduation_Certificate = models.FileField(upload_to='documents/', blank=True, null=True)
+    UG_Marksheet = models.FileField(upload_to='documents/', blank=True, null=True)
+    UG_Certificate = models.FileField(upload_to='documents/', blank=True, null=True)
+    Work_Experience_Document = models.FileField(upload_to='documents/',blank=True, null=True)
+    Passport_Document = models.FileField(upload_to='documents/', blank=True, null=True)
+    Offer_Letter = models.FileField(upload_to='documents/',blank=True, null=True)
+    Ielts_Result = models.FileField(upload_to='documents/',blank=True, null=True)
     Toefl_Result = models.FileField(upload_to='documents/', blank=True)
-    PTE_Result = models.FileField(upload_to='documents/', blank=True)
-    Duolingo_Result = models.FileField(upload_to='documents/', blank=True)
-    Gre_Result = models.FileField(upload_to='documents/', blank=True)
-    Gmat_Result = models.FileField(upload_to='documents/', blank=True)
-    Confirmed_Services = models.ManyToManyField(Available_Services,blank=True)
+    PTE_Result = models.FileField(upload_to='documents/',blank=True, null=True)
+    Duolingo_Result = models.FileField(upload_to='documents/', blank=True, null=True)
+    Gre_Result = models.FileField(upload_to='documents/', blank=True, null=True)
+    Gmat_Result = models.FileField(upload_to='documents/', blank=True, null=True)
+    Confirmed_Services = models.ManyToManyField(Available_Services,blank=True, null=True)
     DetaiEnquiryFollowup = models.ForeignKey(DetailEnquiryFollowupStatus, on_delete=models.SET_NULL, null=True, blank=True)
     Enquiry_Status = models.ForeignKey(Detail_Enquiry_Status, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
             return (f"{self.Current_Enquiry}")
         
-    def save(self, *args, **kwargs):
-            # Call the original save method
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #         # Call the original save method
+    #     super().save(*args, **kwargs)
     
-        # Send email to admin
-        admin_subject = "New Detail Enquiry Submitted"
-        admin_message = (
-            f"A new Detail enquiry has been submitted with ID: {self.id}."
-        )
-        admin_email = settings.ADMIN_EMAIL
-        admin_email_message = EmailMessage(admin_subject, admin_message, settings.DEFAULT_FROM_EMAIL, [admin_email])
-        admin_email_message.send()
+    #     # Send email to admin
+    #     admin_subject = "New Detail Enquiry Submitted"
+    #     admin_message = (
+    #         f"A new Detail enquiry has been submitted with ID: {self.id}."
+    #     )
+    #     admin_email = settings.ADMIN_EMAIL
+    #     admin_email_message = EmailMessage(admin_subject, admin_message, settings.DEFAULT_FROM_EMAIL, [admin_email])
+    #     admin_email_message.send()
     
-        # Send email to student
-        student_subject = "Thank You for Your Detail Enquiry"
-        student_message = (
-            f"Thank you for your Detail Enquiry. We will get back to you shortly."
+    #     # Send email to student
+    #     student_subject = "Thank You for Your Detail Enquiry"
+    #     student_message = (
+    #         f"Thank you for your Detail Enquiry. We will get back to you shortly."
     
     
-        )
-        for field in self._meta.fields:
-                # Get the field name and its value for the current instance
-            field_name = field.name
-            field_value = getattr(self, field_name)
-            # Append field name and value to the email message
-            student_message += f"{field_name.capitalize()}: {field_value}\n"
-        student_email = self.Current_Enquiry.student_email
-        student_email_message = EmailMessage(student_subject, student_message, settings.DEFAULT_FROM_EMAIL, [student_email])
-        student_email_message.send()
+    #     )
+    #     for field in self._meta.fields:
+    #             # Get the field name and its value for the current instance
+    #         field_name = field.name
+    #         field_value = getattr(self, field_name)
+    #         # Append field name and value to the email message
+    #         student_message += f"{field_name.capitalize()}: {field_value}\n"
+    #     student_email = self.Current_Enquiry.student_email
+    #     student_email_message = EmailMessage(student_subject, student_message, settings.DEFAULT_FROM_EMAIL, [student_email])
+    #     student_email_message.send()
     
     # def save(self, *args, **kwargs):
     #     # Call the original save method

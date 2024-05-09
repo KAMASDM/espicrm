@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from rest_framework import viewsets
+from rest_framework import viewsets,status
 from .models import Detail_Enquiry
 from .serializers import DetailEnquirySerializer
 from rest_framework.response import Response
@@ -14,6 +14,7 @@ class DetailEnquiryViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]  
     permission_classes = [IsAuthenticated] 
     
+
     
     # def perform_create(self, serializer):
     #     instance = serializer.save()
