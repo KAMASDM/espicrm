@@ -21,7 +21,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from Master.schema import schema
 from rest_framework import routers
 from Enquiry.views  import EnquiryViewSet, EnquiryCreateView
-from DetailEnquiry.views  import DetailEnquiryViewSet
+from DetailEnquiry.views  import DetailEnquiryViewSet, DetailEnquiryCreate
 from Assessment.views import AssessmentViewSet
 from Application.views import ApplicationViewSet
 from Accounts.views import PaymentViewSet
@@ -125,6 +125,7 @@ urlpatterns = [
     path('payment-tracking-report/', PaymentTrackingReportAPIView.as_view(), name='payment-tracking-report'),
     path('revenue-analysis-report/', RevenueAnalysisReportAPIView.as_view(), name='revenue-analysis-report'),
     path('scholarship-funding-report/', ScholarshipFundingReportAPIView.as_view(), name='scholarship-funding-report'),
+    path('api/create-detail-enquiry/', DetailEnquiryCreate.as_view(), name='create-detail-enquiry'),
 
     # path('admin_charts/', include('admin_charts.urls')),
     ]
