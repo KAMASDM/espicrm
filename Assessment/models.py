@@ -39,7 +39,7 @@ class assessment(models.Model):
     tution_fee = models.CharField(max_length=100, blank=True, null=True)
     fee_currency = models.CharField(max_length=100, blank=True, null=True)
     course_link = models.CharField(max_length=200,blank=True, null=True)
-    AssesmentFollowup = models.ForeignKey(AssesmentFollowupStatus, on_delete=models.SET_NULL, null=True, blank=True)
+    AssesmentFollowup = models.ForeignKey(AssesmentFollowupStatus, on_delete=models.CASCADE, null=True, blank=True)
     ass_status = models.ForeignKey(assessment_status, blank=True, on_delete=models.CASCADE,null=True)
     notes = models.TextField( blank=True,null=True)
 
