@@ -101,6 +101,7 @@ urlpatterns = [
     # path("graphql/", GraphQLView.as_view(graphiql=True, schema=schema)),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/',include('Assessment.urls')),
     path('chaining/', include('smart_selects.urls')),
     path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('enquiry-summaryreport/', EnquirySummaryReport.as_view(), name='enquiry_summary'),
