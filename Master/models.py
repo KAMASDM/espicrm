@@ -363,7 +363,7 @@ class EnquiryFollowupStatus(models.Model):
 
     attachment_enquiryFollowup = models.FileField(upload_to='attachmentsForEnquiryFollowup/', blank=True)
 
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,blank=True,null=True)
 
     def __str__(self):
         return f"{self.last_contact_date} Followup Status"
@@ -392,7 +392,7 @@ class DetailEnquiryFollowupStatus(models.Model):
 
     attachment_DetailEnquiryFollowup = models.FileField(upload_to='attachmentsForDetailEnquiryFollowup/', blank=True)
 
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,blank=True,null=True)
 
     def __str__(self):
         return f"{self.last_contact_date} Followup Status"
@@ -420,7 +420,7 @@ class AssesmentFollowupStatus(models.Model):
 
     attachment_AssesmentFollowup = models.FileField(upload_to='attachmentsForAssesmentFollowup/', blank=True)
 
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,blank=True,null=True)
 
     def __str__(self):
         return f"{self.last_contact_date} Followup Status"
@@ -447,7 +447,7 @@ class PaymentFollowupStatus(models.Model):
 
     attachment_PaymentFollowup = models.FileField(upload_to='attachmentsForPaymentFollowup/', blank=True)
 
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,blank=True,null=True)
 
     def __str__(self):
         return f"{self.last_contact_date} Followup Status"
