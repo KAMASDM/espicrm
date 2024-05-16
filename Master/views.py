@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from rest_framework.response import Response
 # Create your views here.
 from rest_framework import viewsets
 from .models import (
@@ -163,21 +163,69 @@ class EnquiryFollowupStatusViewSet(viewsets.ModelViewSet):
     serializer_class = EnquiryFollowupStatusSerializer
     authentication_classes = [JWTAuthentication]  # Add JWTAuthentication
     permission_classes = [IsAuthenticated] 
+    
+    def perform_create(self, serializer):
+            serializer.save(user=self.request.user)
+
+    def list(self, request, *args, **kwargs):
+        user_id = request.query_params.get('user', None)
+        if user_id is not None:
+            queryset = self.queryset.filter(user_id=user_id)
+        else:
+            queryset = self.queryset.filter(user=request.user)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 class DetailEnquiryFollowupStatusViewSet(viewsets.ModelViewSet):
     queryset = DetailEnquiryFollowupStatus.objects.all()
     serializer_class = DetailEnquiryFollowupStatusSerializer
     authentication_classes = [JWTAuthentication]  # Add JWTAuthentication
-    permission_classes = [IsAuthenticated] 
+    permission_classes = [IsAuthenticated]
+    
+    def perform_create(self, serializer):
+            serializer.save(user=self.request.user)
+
+    def list(self, request, *args, **kwargs):
+        user_id = request.query_params.get('user', None)
+        if user_id is not None:
+            queryset = self.queryset.filter(user_id=user_id)
+        else:
+            queryset = self.queryset.filter(user=request.user)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 class AssesmentFollowupStatusViewSet(viewsets.ModelViewSet):
     queryset = AssesmentFollowupStatus.objects.all()
     serializer_class = AssesmentFollowupStatusSerializer
     authentication_classes = [JWTAuthentication]  # Add JWTAuthentication
-    permission_classes = [IsAuthenticated] 
+    permission_classes = [IsAuthenticated]
+    
+    def perform_create(self, serializer):
+            serializer.save(user=self.request.user)
+
+    def list(self, request, *args, **kwargs):
+        user_id = request.query_params.get('user', None)
+        if user_id is not None:
+            queryset = self.queryset.filter(user_id=user_id)
+        else:
+            queryset = self.queryset.filter(user=request.user)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 class PaymentFollowupStatusViewSet(viewsets.ModelViewSet):
     queryset = PaymentFollowupStatus.objects.all()
     serializer_class = PaymentFollowupStatusSerializer
     authentication_classes = [JWTAuthentication]  # Add JWTAuthentication
     permission_classes = [IsAuthenticated] 
+    
+    def perform_create(self, serializer):
+            serializer.save(user=self.request.user)
+
+    def list(self, request, *args, **kwargs):
+        user_id = request.query_params.get('user', None)
+        if user_id is not None:
+            queryset = self.queryset.filter(user_id=user_id)
+        else:
+            queryset = self.queryset.filter(user=request.user)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)

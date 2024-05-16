@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django_countries.fields import CountryField
-
 #from Master.models import Toefl_Exam, ielts_Exam, PTE_Exam, Duolingo_Exam, Gre_Exam, Gmat_Exam, bachelor_requirement
 
 
@@ -367,6 +366,8 @@ class EnquiryFollowupStatus(models.Model):
 
     def __str__(self):
         return f"{self.last_contact_date} Followup Status"
+    
+
 
 
 
