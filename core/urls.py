@@ -85,6 +85,7 @@ router.register('gmat_exams', GmatExamViewSet)
 router.register('enquiries', EnquiryViewSet)
 router.register('detailsEnquiry',DetailEnquiryViewSet)
 router.register('assesment',AssessmentViewSet )
+
 router.register('application',ApplicationViewSet )
 router.register('payments', PaymentViewSet)
 # router.register(r'followups', FollowupViewSet)

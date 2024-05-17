@@ -363,7 +363,7 @@ class EnquiryFollowupStatus(models.Model):
 
     attachment_enquiryFollowup = models.FileField(upload_to='attachmentsForEnquiryFollowup/', blank=True)
 
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,blank=True,null=True)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.last_contact_date} Followup Status"
