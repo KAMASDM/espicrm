@@ -48,7 +48,8 @@ from Master.views import (
 AssesmentFollowupStatusViewSet, PaymentFollowupStatusViewSet,
 )
 from user.views import CustomUserViewSet
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 router = routers.DefaultRouter()
 router.register('countriesIntersted', CountryInterestedViewSet)
@@ -130,5 +131,5 @@ urlpatterns = [
     path('api/create-detail-enquiry/', DetailEnquiryCreate.as_view(), name='create-detail-enquiry'),
 
     # path('admin_charts/', include('admin_charts.urls')),
-    ]
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

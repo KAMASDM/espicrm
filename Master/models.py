@@ -19,7 +19,7 @@ class CountryInterested(models.Model):
 class country(models.Model):
     country = CountryField(blank_label="(select country)")
     def __str__(self):
-        return self.country
+            return (f"{self.country}")
 
 class course_levels(models.Model):
 

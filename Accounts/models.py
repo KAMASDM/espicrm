@@ -5,17 +5,17 @@ from django.contrib.auth import get_user_model
 import requests
 # Create your models here.
 class Payment(models.Model):
-    Memo_For = models.ForeignKey(Detail_Enquiry, on_delete=models.CASCADE,null=True,blank=True,)
-    payment_id = models.CharField(max_length=100, blank=True, null=True)
-    Payment_Type = models.ForeignKey(Payment_Type,on_delete=models.CASCADE, blank=True,null=True,)
-    Payment_For = models.ManyToManyField(Available_Services, blank=True,null=True,)
-    payment_date = models.DateField(blank=True, null=True, editable=True)
-    payment_amount = models.FloatField(blank=True, null=True)
-    payment_mode = models.ForeignKey(Payment_Mode,on_delete=models.CASCADE, blank=True,null=True)
-    payment_status = models.ForeignKey(Payment_Status, on_delete=models.CASCADE,blank=True,null=True)
-    payment_reference = models.CharField(max_length=100, blank=True, null=True)
-    payment_remarks = models.TextField(blank=True, null=True)
-    payment_received_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,blank=True, null=True)
+    Memo_For = models.ForeignKey(Detail_Enquiry, on_delete=models.CASCADE,blank=True,)
+    payment_id = models.CharField(max_length=100, blank=True)
+    Payment_Type = models.ForeignKey(Payment_Type,on_delete=models.CASCADE, blank=True)
+    Payment_For = models.ManyToManyField(Available_Services, blank=True)
+    payment_date = models.DateField(blank=True,null=True, editable=True)
+    payment_amount = models.FloatField(blank=True)
+    payment_mode = models.ForeignKey(Payment_Mode,on_delete=models.CASCADE, blank=True)
+    payment_status = models.ForeignKey(Payment_Status, on_delete=models.CASCADE,blank=True)
+    payment_reference = models.CharField(max_length=100, blank=True)
+    payment_remarks = models.TextField(blank=True)
+    payment_received_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,blank=True)
     payment_document = models.FileField(upload_to='documents/', blank=True)
     PaymentFollowup = models.ForeignKey(PaymentFollowupStatus, on_delete=models.SET_NULL, null=True, blank=True)
     

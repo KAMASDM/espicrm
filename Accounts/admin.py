@@ -14,7 +14,7 @@ class PaymentListAdmin(admin.ModelAdmin):
 
     fieldsets = ( ('Payment Details',{
                       'fields': ('Memo_For','payment_id','Payment_Type', 'Payment_For', 'payment_date','payment_amount','payment_mode','payment_status','payment_reference','payment_remarks','payment_document',
-                                'payment_received_by'),
+                                'payment_received_by', 'PaymentFollowup'),
                  }),
      )
 
