@@ -6,5 +6,8 @@ class ApplicationSerializer(serializers.ModelSerializer):
         model = Application
         fields = '__all__'
         
-        depth=3
+    def validate(self, data):
+        if 'application' not in data or data['application'] is None:
+            data['application'] = None  # Ensure it is set to None if not provided
+        return data
 
