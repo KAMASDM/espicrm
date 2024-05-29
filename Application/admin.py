@@ -20,7 +20,7 @@ class ApplicationAdmin(admin.ModelAdmin):
             'fields': ('ielts', 'gre', 'toefl', 'gmat', 'pte', 'work_experience', 'other_documents')
         }),
         ('Personal Documents', {
-            'fields': ('sop', 'cv', 'passport')
+            'fields': ('sop', 'cv', 'passport', 'Rejection_reason')
         }),
     )
 

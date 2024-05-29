@@ -4,6 +4,7 @@ from .models import assessment
 class AssessmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = assessment
+        # depth=2
         fields = [
             'id', 'assigned_users', 'enquiry', 'student_country', 'university',
             'level_applying_for', 'course_interested', 'intake_interested', 'specialisation',
@@ -18,3 +19,4 @@ class AssessmentSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return assessment.objects.create(**validated_data)
+     

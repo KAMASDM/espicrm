@@ -121,6 +121,7 @@ class DetailEnquiryViewSet(viewsets.ModelViewSet):
 class DetailEnquiryCreate(generics.ListCreateAPIView):
     queryset = Detail_Enquiry.objects.all()
     serializer_class = DetailEnquirySerializer
+
     
     
     

@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'DetailEnquiry',
     'Accounts',
     'report',
-    # 'jazzmin',
+    'jazzmin',
     'graphene_django',
     'import_export',
     'rest_framework',
@@ -348,7 +348,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-
+MEDIA_ROOT = "media/"
+MEDIA_URL = "media/"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

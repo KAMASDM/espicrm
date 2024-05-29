@@ -10,9 +10,9 @@ import requests
 from django.core.mail import EmailMessage
 from django.conf import settings
 class assessment(models.Model):
-    assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,null=True,blank=True)
+    assigned_users = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,blank=True, null=True)
     enquiry = models.ForeignKey(Detail_Enquiry, on_delete=models.CASCADE,blank=True, null=True)
-    student_country = models.ForeignKey(CountryInterested, on_delete=models.CASCADE,null=True, blank=True,)
+    student_country = models.ForeignKey(CountryInterested, on_delete=models.CASCADE, blank=True, null=True)
     university = ChainedForeignKey(
         university,
         chained_field="student_country",
@@ -20,7 +20,7 @@ class assessment(models.Model):
         show_all=False,
         auto_choose=True,
         sort=True,
-        null=True,)
+        )
     level_applying_for = models.ForeignKey(course_levels, on_delete=models.CASCADE, blank=True, null=True)
     course_interested = ChainedForeignKey(
         Course,
@@ -30,7 +30,7 @@ class assessment(models.Model):
         auto_choose=True,
         sort=True,
         blank=True,
-        null=True,
+        null=True
     )
     intake_interested = models.ForeignKey(intake, on_delete=models.CASCADE, blank=True, null=True)
     specialisation = models.CharField(max_length=100, blank=True, null=True)
@@ -39,9 +39,9 @@ class assessment(models.Model):
     tution_fee = models.CharField(max_length=100, blank=True, null=True)
     fee_currency = models.CharField(max_length=100, blank=True, null=True)
     course_link = models.CharField(max_length=200,blank=True, null=True)
-    AssesmentFollowup = models.ForeignKey(AssesmentFollowupStatus, on_delete=models.CASCADE, null=True, blank=True)
-    ass_status = models.ForeignKey(assessment_status, blank=True, on_delete=models.CASCADE,null=True)
-    notes = models.TextField( blank=True,null=True)
+    AssesmentFollowup = models.ForeignKey(AssesmentFollowupStatus, on_delete=models.CASCADE,  blank=True, null=True)
+    ass_status = models.ForeignKey(assessment_status, blank=True, on_delete=models.CASCADE, null=True)
+    notes = models.TextField(blank=True,null=True)
 
     def __str__(self):
         return (f"{self.enquiry}")
