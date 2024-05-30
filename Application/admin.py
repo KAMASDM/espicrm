@@ -3,7 +3,7 @@ from .models import Application
 
 class ApplicationAdmin(admin.ModelAdmin):
     # Fields to display in the list view
-    list_display = ('application', 'application_status', 'sop', 'cv', 'passport')
+    list_display = ('application', 'application_status', 'sop', 'cv')
 
     # Enable search functionality
     search_fields = ('application__enquiry__Current_Enquiry__student_First_Name', 'application_status__status')  # Assuming 'status' field in 'application_status'
