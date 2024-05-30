@@ -11,43 +11,122 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework import generics
 from django.core.mail import send_mail
 from django.conf import settings
+from django.shortcuts import get_object_or_404
+from Master.models import * 
+from Enquiry.models import enquiry
 class DetailEnquiryViewSet(viewsets.ModelViewSet):
     queryset = Detail_Enquiry.objects.all()
     serializer_class = DetailEnquirySerializer
     authentication_classes = [JWTAuthentication]  
     permission_classes = [IsAuthenticated]
+    
+    # def create(self, request, *args, **kwargs):
+    #     # Validate Current_Enquiry
+    #     current_enquiry_id = Detail_Enquiry.objects.get('Current_Enquiry')
+    #     if current_enquiry_id is not None:
+    #         current_enquiry = enquiry.objects.get(id=current_enquiry_id)
+            
+    #     current_enquiry_data = {
+    #                 'id': current_enquiry.id,
+    #                 'student_First_Name': current_enquiry.student_First_Name,
+    #                 'student_Last_Name': current_enquiry.student_Last_Name,
+    #                 'student_passport': current_enquiry.student_passport,
+    #                 'student_phone': current_enquiry.student_phone,
+    #                 # 'alternate_phone': current_enquiry.alternate_phone,
+    #                 # 'student_address': current_enquiry.student_address,
+    #                 # 'student_country': current_enquiry.student_country,
+    #                 # 'student_state': current_enquiry.student_state,
+    #                 # 'student_city': current_enquiry.student_city,
+    #                 # 'student_zip': current_enquiry.student_zip,
+    #                 # 'current_education': current_enquiry.current_education,
+    #                 # 'country_interested': current_enquiry.country_interested,
+    #                 # 'university_interested': current_enquiry.university_interested,
+    #                 # 'course_interested': current_enquiry.course_interested,
+    #                 # 'level_applying_for': current_enquiry.level_applying_for,
+    #                 # 'intake_interested': current_enquiry.intake_interested,
+    #                 # 'assigned_users': current_enquiry.assigned_users,
+    #                 # Add other fields as needed
+    #             }
+
+        
+    #     current_enquiry_id = request.data.get('current_enquiry_data')
+    
+    #     current_enquiry = get_object_or_404(enquiry, id=current_enquiry_id)
+     
+
+    #     request.data['Current_Enquiry'] = current_enquiry
+       
+
+    #     serializer = DetailEnquirySerializer(data=request.data)
+
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def send_enquiry_confirmation_email(self, enquiry_instance, student_email):
+        subject = 'Enquiry Confirmation'
+        related_enquiry = enquiry_instance.Current_Enquiry
+
+    # Extract student_email from the related enquiry instance
+        student_email = related_enquiry.student_email
+
+        # Construct email content
+        message = f"Thank you for submitting your Deatil enquiry with us!\n\n"
+        message += f"We have received your Deatil enquiry details. Our team will get in touch with you shortly.\n\n"
+        message += f"Deatil Enquiry Details:\n"
+        message += f"Current Enquiry: {enquiry_instance.Current_Enquiry}\n"
+        message += f"Current Education Details: {enquiry_instance.Current_Education_Details}\n"
+        message += f"Tenth Education Details: {enquiry_instance.Tenth_Education_Details}\n"
+        message += f"Twelveth Education Details: {enquiry_instance.Twelveth_Education_Details}\n"
+        message += f"Graduation Education Details: {enquiry_instance.Graduation_Education_Details}\n"
+        message += f"Work Experience: {enquiry_instance.Work_Experience}\n"
+        message += f"Toefl Exam: {enquiry_instance.Toefl_Exam}\n"
+        message += f"Ielts Exam: {enquiry_instance.ielts_Exam}\n"
+        message += f"PTE Exam: {enquiry_instance.PTE_Exam}\n"
+        message += f"Duolingo Exam: {enquiry_instance.Duolingo_Exam}\n"
+        message += f"Gre Exam: {enquiry_instance.Gre_Exam}\n"
+        message += f"Gmat Exam: {enquiry_instance.Gmat_Exam}\n"
+        message += f"Father's Occupation: {enquiry_instance.Father_Occupation}\n"
+        message += f"Father's Annual Income: {enquiry_instance.Father_Annual_Income}\n"
+        message += f"Refusal: {enquiry_instance.Refusal}\n"
+        message += f"Twelveth Document: {enquiry_instance.Twelveth_Document}\n"
+        message += f"Tenth Document: {enquiry_instance.Tenth_Document}\n"
+        message += f"Graduation Marksheet: {enquiry_instance.Graduation_Marksheet}\n"
+        message += f"Graduation Certificate: {enquiry_instance.Graduation_Certificate}\n"
+        message += f"UG Marksheet: {enquiry_instance.UG_Marksheet}\n"
+        message += f"UG Certificate: {enquiry_instance.UG_Certificate}\n"
+        message += f"Work Experience Document: {enquiry_instance.Work_Experience_Document}\n"
+        message += f"Passport Document: {enquiry_instance.Passport_Document}\n"
+        message += f"Offer Letter: {enquiry_instance.Offer_Letter}\n"
+        message += f"IELTS Result: {enquiry_instance.Ielts_Result}\n"
+        message += f"Toefl Result: {enquiry_instance.Toefl_Result}\n"
+        message += f"PTE Result: {enquiry_instance.PTE_Result}\n"
+        message += f"Duolingo Result: {enquiry_instance.Duolingo_Result}\n"
+        message += f"GRE Result: {enquiry_instance.Gre_Result}\n"
+        message += f"GMAT Result: {enquiry_instance.Gmat_Result}\n"
+        message += f"Confirmed Services: {', '.join(str(service) for service in enquiry_instance.Confirmed_Services.all())}\n"
+        message += f"Detail Enquiry Followup: {enquiry_instance.DetaiEnquiryFollowup}\n"
+        message += f"Enquiry Status: {enquiry_instance.Enquiry_Status}\n"
+        # Include other fields as needed
+
+
+
+
+
+        # Send email
+        send_mail(subject, message, settings.EMAIL_HOST_USER, [student_email])
+
 
 class DetailEnquiryCreate(generics.ListCreateAPIView):
     queryset = Detail_Enquiry.objects.all()
     serializer_class = DetailEnquirySerializer
 
     
+    
+    
+    
 
-
-def send_enquiry_confirmation_email(self, enquiry_instance):
-    subject = 'Detail Enquiry Confirmation'
-
-    message = f"Thank you for submitting your detail enquiry with us!\n\n"
-    message += f"We have received your detail enquiry details. Our team will get in touch with you shortly.\n\n"
-    message += f"Enquiry Details:\n"
-    message += f"First Name: {enquiry_instance.Current_Enquiry.student_First_Name}\n"
-    message += f"Last Name: {enquiry_instance.Current_Enquiry.student_Last_Name}\n"
-    message += f"Passport: {enquiry_instance.Current_Enquiry.student_passport}\n"
-    message += f"Phone: {enquiry_instance.Current_Enquiry.student_phone}\n"
-    message += f"Alternate Phone: {enquiry_instance.Current_Enquiry.alternate_phone}\n"
-    message += f"Address: {enquiry_instance.Current_Enquiry.student_address}\n"
-    message += f"Country: {enquiry_instance.Current_Enquiry.student_country}\n"
-    message += f"State: {enquiry_instance.Current_Enquiry.student_state}\n"
-    message += f"City: {enquiry_instance.Current_Enquiry.student_city}\n"
-    message += f"ZIP: {enquiry_instance.Current_Enquiry.student_zip}\n"
-    message += f"Current Education: {enquiry_instance.Current_Education_Details}\n"
-    message += f"Work Experience: {enquiry_instance.Work_Experience}\n"
-    # Add more fields as needed
-
-    send_mail(subject, message, settings.EMAIL_HOST_USER, [enquiry_instance.Current_Enquiry.student_email])
-
-    # Log email sent if needed
-    print("Detail enquiry confirmation email sent successfully to:", enquiry_instance.Current_Enquiry.student_email)
 
     
 

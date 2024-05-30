@@ -13,13 +13,6 @@ class EnquiryViewSet(viewsets.ModelViewSet):
     serializer_class = EnquirySerializer
     authentication_classes = [JWTAuthentication] 
     permission_classes = [IsAuthenticated] 
- 
- 
-class EnquiryCreateView(generics.ListCreateAPIView):
-    queryset = enquiry.objects.all()
-    serializer_class = EnquiryCreateSerializerss   
-
-    
     
     def create(self, request, *args, **kwargs):
             # Extract student_email from request data
@@ -61,11 +54,18 @@ class EnquiryCreateView(generics.ListCreateAPIView):
         message += f"Level Applying For: {enquiry_instance.level_applying_for}\n"
         message += f"Intake Interested: {enquiry_instance.intake_interested}\n"
         message += f"Assigned Users: {enquiry_instance.assigned_users}\n"
-        message += f"Enquiry Status: {enquiry_instance.enquiry_status}\n"
-        message += f"Notes: {enquiry_instance.notes}\n"
         message += f"Created By: {enquiry_instance.created_by}\n"
                 # Send email
         send_mail(subject, message, settings.EMAIL_HOST_USER, [student_email])
+ 
+ 
+class EnquiryCreateView(generics.ListCreateAPIView):
+    queryset = enquiry.objects.all()
+    serializer_class = EnquiryCreateSerializerss   
+
+    
+    
+    
         
         
     # def send_whatsapp_message(self,enquiry_instance,student_phone,student_First_Name):
