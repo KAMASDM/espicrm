@@ -9,7 +9,7 @@ class AssessmentAdmin(admin.ModelAdmin):
     list_display = ('enquiry', 'student_country', 'university', 'level_applying_for', 'course_interested', 'intake_interested', 'specialisation', 'application_fee', 'tution_fee')
 
     # Fields to enable search functionality
-    search_fields = ('enquiry__Current_Enquiry__student_First_Name', 'university__univ_name', 'course_interested__name',)
+    search_fields = ('enquiry__Current_Enquiry__student_First_Name', 'university__univ_name', 'course_interested__name', 'level_applying_for__name', )
 
     # Organize form fields into fieldsets for detailed view
     fieldsets = (
