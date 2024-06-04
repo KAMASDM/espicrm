@@ -5,4 +5,4 @@ class DetailEnquirySerializer(serializers.ModelSerializer):
     class Meta:
         model = Detail_Enquiry
         fields = '__all__'
-        # depth=2
+        depth=2
