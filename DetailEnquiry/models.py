@@ -10,7 +10,7 @@ import requests
 class Detail_Enquiry(models.Model):
 
     Current_Enquiry = models.ForeignKey(enquiry, on_delete=models.CASCADE,blank=True,  )
-    Current_Education_Details = models.ForeignKey(Edu_Level, on_delete=models.CASCADE )
+    Current_Education_Details = models.ForeignKey(Edu_Level, on_delete=models.CASCADE, null=True, blank=True)
     Tenth_Education_Details = models.ForeignKey(Edu_Level, on_delete=models.CASCADE, blank=True, related_name='Tenth_Education_Details')
     Twelveth_Education_Details = models.ForeignKey(Edu_Level, on_delete=models.CASCADE, blank=True, related_name='Twelveth_Education_Details')
     Graduation_Education_Details = models.ForeignKey(Edu_Level, on_delete=models.CASCADE, blank=True, related_name='Graduation_Education_Details')
