@@ -5,7 +5,7 @@ class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
         fields = '__all__'
-        #depth=2
+        depth=2
         
     def validate(self, data):
         if 'application' not in data or data['application'] is None:

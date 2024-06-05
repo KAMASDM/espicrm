@@ -17,6 +17,7 @@ class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
         fields = '__all__'
+        depth = 2
     
     def create(self, validated_data):
         memo_for_id = validated_data.pop('Memo_For_id', None)
