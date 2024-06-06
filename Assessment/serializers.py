@@ -4,7 +4,7 @@ from .models import assessment
 class AssessmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = assessment
-        depth=2
+        depth=3
         fields = [
             'id', 'assigned_users', 'enquiry', 'student_country', 'university',
             'level_applying_for', 'course_interested', 'intake_interested', 'specialisation',
